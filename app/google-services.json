@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "428694822954",
+    "firebase_url": "https://ninadelburrito.firebaseio.com",
+    "project_id": "ninadelburrito",
+    "storage_bucket": "ninadelburrito.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428694822954:android:d9e2f39384e28e67",
+        "android_client_info": {
+          "package_name": "com.example.zegerd.nina_del_burrito"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428694822954-a73r5bo0j34idfg97tlv09use7dhj0fn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.zegerd.nina_del_burrito",
+            "certificate_hash": "41e4ee7c86b33e792a7ec23775bad9d6d4841062"
+          }
+        },
+        {
+          "client_id": "428694822954-42s83uqp89essednlrvn7fmgeelr3fud.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGVqeMiWHkGWCj4konZcSB8JYrNZF4fnw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428694822954-42s83uqp89essednlrvn7fmgeelr3fud.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
