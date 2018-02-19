@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -42,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         // I do not know what this does, but in the tutorial does it.
-        setContentView(R.layout.activity_login);
+        ////setContentView(R.layout.activity_login);
 
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
@@ -55,12 +57,22 @@ public class LoginActivity extends AppCompatActivity {
         btnRegister = (Button) findViewById(R.id.btn_register);
         progressBar = (ProgressBar) findViewById(R.id.progressBar2);
 
-        // Tutorial init this again
-        mAuth = FirebaseAuth.getInstance();
-
         // Button Click listeners
 
         // TODO SignUp/register functionality
+        /* Add user when sign in
+           String userId = mAuth.getCurrentUser().getUid();
+        DatabaseReference currentUserDB = FirebaseDatabase.getInstance()
+                                                            .getReference()
+                                                            .child("Users")
+                                                            .child(userId);
+        Map newPost = new HashMap(); // or Object
+        newPost.put("name", "name");
+
+        currentUserDB.setValue(newPost)
+        https://www.youtube.com/watch?v=vkf5z1raSyE&t=1s
+        https://www.androidhive.info/2016/10/android-working-with-firebase-realtime-database/
+         */
 
         // TODO Reset password functionality
 
@@ -107,9 +119,19 @@ public class LoginActivity extends AppCompatActivity {
                                         Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                                     }
                                 } else {
+                                    /*
+                                    // Add user to DB
+                                    String userId = mAuth.getCurrentUser().getUid();
+                                    DatabaseReference currentUserDB = FirebaseDatabase.getInstance()
+                                            .getReference()
+                                            .child("Users")
+                                            .child(userId);
+                                    User u = new User(inputEmail.getText().toString(), 0);
+                                    currentUserDB.setValue(u);
+                                    */
+
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
-                                    //finish();
                                 }
                             }
                         });
