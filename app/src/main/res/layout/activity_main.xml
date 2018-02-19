@@ -14,7 +14,7 @@
         android:layout_below="@+id/txtview_name"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="13dp"
-        android:text="Te vendo burritos"
+        android:text="@string/te_vendo_burritos"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -28,7 +28,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="34dp"
         android:onClick="signOut"
-        android:text="Sign out" />
+        android:text="@string/sign_out" />
 
     <TextView
         android:id="@+id/txtview_name"
@@ -37,7 +37,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="TextView" />
+        android:text="@string/textview" />
 
     <Button
         android:id="@+id/btn_itemMenu"
@@ -46,6 +46,6 @@
         android:layout_below="@+id/txtview_greet"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="66dp"
-        android:text="Button" />
+        android:text="@string/button" />
 
 </RelativeLayout>
