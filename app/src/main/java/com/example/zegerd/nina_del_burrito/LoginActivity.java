@@ -43,9 +43,6 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
-        // I do not know what this does, but in the tutorial does it.
-        ////setContentView(R.layout.activity_login);
-
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 

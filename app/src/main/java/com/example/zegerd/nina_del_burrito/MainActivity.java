@@ -23,10 +23,6 @@ public class MainActivity extends AppCompatActivity {
     public static final int VENDEDOR = 1;
     public static final int CLIENT = 0;
 
-    // UI items
-    private TextView txtvw_name, txtvw_greet;
-    private Button btn_itemMenu;
-
     // Instance of FireBaseAuth
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener authListener;
@@ -38,9 +34,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Init UI items
-        txtvw_name = findViewById(R.id.txtview_name);
-        txtvw_greet = findViewById(R.id.txtview_greet);
-        btn_itemMenu = findViewById(R.id.btn_itemMenu);
 
         // Init FireBaseAuth
         mAuth = FirebaseAuth.getInstance();
@@ -90,7 +83,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showVendorScreen() {
-        txtvw_name.setText(currentUserInfo.getUsername());
+
+        Intent intent = new Intent(MainActivity.this, VendorActivity.class);
+        startActivity(intent);
+        finish();
+        /*txtvw_name.setText(currentUserInfo.getUsername());
         txtvw_greet.setText("Vendo Burritos");
 
         // Use Fragments for this later
@@ -101,11 +98,14 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, AddFoodActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 
     private void showClientScreen() {
-        txtvw_name.setText(currentUserInfo.getUsername());
+        Intent intent = new Intent(MainActivity.this, UserActivity.class);
+        startActivity(intent);
+        finish();
+        /*txtvw_name.setText(currentUserInfo.getUsername());
         txtvw_greet.setText("Quiero burritos");
 
         // Use Fragments for this later
@@ -116,12 +116,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, MainUserActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 
 
-    public void signOut(View v) {
-        mAuth.signOut();
-        finish();
-    }
 }

@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Ninadelburrito.iml" filepath="$PROJECT_DIR$/Ninadelburrito.iml" />
+      <module fileurl="file://C:\Users\estef\Documents\nina-del-burrito\Ninadelburrito.iml" filepath="C:\Users\estef\Documents\nina-del-burrito\Ninadelburrito.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nina-del-burrito.iml" filepath="$PROJECT_DIR$/nina-del-burrito.iml" />
     </modules>
   </component>
 </project>
