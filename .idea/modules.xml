@@ -4,7 +4,9 @@
     <modules>
       <module fileurl="file://C:\Users\estef\Documents\nina-del-burrito\Ninadelburrito.iml" filepath="C:\Users\estef\Documents\nina-del-burrito\Ninadelburrito.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\Zegerd\Proyectos\nina-del-burrito\app\app.iml" filepath="D:\Zegerd\Proyectos\nina-del-burrito\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/nina-del-burrito.iml" filepath="$PROJECT_DIR$/nina-del-burrito.iml" />
+      <module fileurl="file://D:\Zegerd\Proyectos\nina-del-burrito\nina-del-burrito.iml" filepath="D:\Zegerd\Proyectos\nina-del-burrito\nina-del-burrito.iml" />
     </modules>
   </component>
 </project>
