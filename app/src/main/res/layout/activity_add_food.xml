@@ -1,9 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     tools:context="com.example.zegerd.nina_del_burrito.AddFoodActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:id="@+id/editTxt_foodNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/editTxt_foodDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/editTxt_foodNombre"
+        android:layout_below="@+id/editTxt_foodNombre"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="Descripción"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/button_addFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTxt_foodDesc"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:onClick="addFood"
+        android:text="Añadir" />
+
+    <EditText
+        android:id="@+id/editTxt_foodPrecio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:hint="Precio"
+        android:inputType="numberDecimal" />
+
+</RelativeLayout>

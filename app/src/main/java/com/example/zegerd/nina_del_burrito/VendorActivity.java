@@ -1,5 +1,6 @@
 package com.example.zegerd.nina_del_burrito;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,13 +22,16 @@ public class VendorActivity extends AppCompatActivity {
 
 
         txtvw_name = findViewById(R.id.textView2);
-        txtvw_greet = findViewById(R.id.textView4);
+        //txtvw_greet = findViewById(R.id.textView4);
         btn_itemMenu = findViewById(R.id.button3);
 
-       mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
     }
 
-
+    public void miMenu(View v) {
+        Intent intent = new Intent(this, VendorFoodActivity.class);
+        startActivity(intent);
+    }
 
     public void signOut(View v) {
         mAuth.signOut();

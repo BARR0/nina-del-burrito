@@ -4,34 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
+    android:padding="20dp"
     tools:context="com.example.zegerd.nina_del_burrito.VendorActivity">
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="146dp"
-        android:layout_marginTop="54dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="51dp"
         android:text="Vendedor" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="33dp"
-        android:text="TextView" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/textView4"
-        android:layout_marginBottom="86dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="94dp"
         android:onClick="signOut"
         android:text="sign out" />
+
+    <Button
+        android:id="@+id/btn_miMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:onClick="miMenu"
+        android:text="@string/mi_menu" />
 </RelativeLayout>
