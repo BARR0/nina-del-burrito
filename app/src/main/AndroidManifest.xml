@@ -21,7 +21,8 @@
         <activity android:name=".AddFoodActivity" />
         <activity android:name=".UserActivity" />
         <activity android:name=".VendorActivity" />
-        <activity android:name=".VendorFoodActivity"></activity>
+        <activity android:name=".VendorFoodActivity" />
+        <activity android:name=".LoadingVendorFoodActivity"></activity>
     </application>
 
 </manifest>

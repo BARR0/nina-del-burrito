@@ -22,8 +22,7 @@ public class VendorItemAdapter extends ItemAdapter {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     Item tmp = child.getValue(Item.class);
-                    if (tmp.isDisponible())
-                        items.add(tmp);
+                    items.add(tmp);
                 }
             }
 

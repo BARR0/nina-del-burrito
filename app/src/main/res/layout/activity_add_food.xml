@@ -49,4 +49,14 @@
         android:hint="Precio"
         android:inputType="numberDecimal" />
 
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/button_addFood"
+        android:layout_below="@+id/button_addFood"
+        android:layout_marginTop="35dp"
+        android:onClick="endAddFoof"
+        android:text="regresar" />
+
 </RelativeLayout>

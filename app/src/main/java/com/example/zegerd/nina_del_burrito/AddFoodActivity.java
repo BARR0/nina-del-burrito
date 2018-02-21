@@ -51,4 +51,9 @@ public class AddFoodActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Producto añadido", Toast.LENGTH_SHORT).show();
     }
+
+    public void endAddFoof(View v) {
+        // Envia al menu rpincipal por el momento
+        finish();
+    }
 }
