@@ -1,5 +1,6 @@
 package com.example.zegerd.nina_del_burrito;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +36,8 @@ public class AddFoodActivity extends AppCompatActivity {
 
 
     public void addFood(View v){
+        // TODO authenticate empty fields
+
         String itemName = name.getText().toString();
         String itemDesc = desc.getText().toString();
         float itemPrice = Float.parseFloat(precio.getText().toString());
@@ -53,7 +56,8 @@ public class AddFoodActivity extends AppCompatActivity {
     }
 
     public void endAddFoof(View v) {
-        // Envia al menu rpincipal por el momento
+        Intent result = new Intent();
+        setResult(RESULT_OK, result);
         finish();
     }
 }

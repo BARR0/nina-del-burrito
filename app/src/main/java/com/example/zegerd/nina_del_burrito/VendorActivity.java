@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class VendorActivity extends AppCompatActivity {
 
-    private TextView txtvw_name, txtvw_greet;
+    private TextView txtvw_name;
     private Button btn_itemMenu;
     private FirebaseAuth mAuth;
 
@@ -20,16 +20,16 @@ public class VendorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vendor);
 
-
+        // Init UI items
         txtvw_name = findViewById(R.id.textView2);
-        //txtvw_greet = findViewById(R.id.textView4);
         btn_itemMenu = findViewById(R.id.button3);
 
+        // Init FireBase stuff
         mAuth = FirebaseAuth.getInstance();
     }
 
     public void miMenu(View v) {
-        Intent intent = new Intent(this, VendorFoodActivity.class);
+        Intent intent = new Intent(this, LoadingVendorFoodActivity.class);
         startActivity(intent);
     }
 

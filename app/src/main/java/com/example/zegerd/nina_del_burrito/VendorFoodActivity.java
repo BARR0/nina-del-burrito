@@ -1,9 +1,11 @@
 package com.example.zegerd.nina_del_burrito;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
@@ -27,49 +29,35 @@ public class VendorFoodActivity extends AppCompatActivity {
     private String vendorId;
     private VendorItemAdapter itemAdapter;
 
+    public static final int ADD_FOOD_CODE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vendor_food);
 
-        // Init FB stuff
+        // Init FireBase stuff
         mAuth = FirebaseAuth.getInstance();
-
         vendorId = mAuth.getCurrentUser().getUid();
 
         // Init UI items
         menu = findViewById(R.id.listvw_menu);
-
-        //itemAdapter = new VendorItemAdapter(this, vendorId);
-        //menu.setAdapter(itemAdapter);
-
-        //Intent intent = new Intent();
-
-        //intent.putExtra("a", menu);
-        //updateList();
-        updateList();
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        updateList();
+        menu.setAdapter(LoadingVendorFoodActivity.item_Adapter);
     }
 
     public void toAddFood(View v) {
         Intent intent = new Intent(this, AddFoodActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, ADD_FOOD_CODE);
     }
 
-    private void updateList() {
-        // Set Adapter
-        menu.setAdapter(new VendorItemAdapter(this, vendorId));
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == ADD_FOOD_CODE && resultCode == Activity.RESULT_OK) {
+            Intent intent = new Intent(this, LoadingVendorFoodActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
 }
