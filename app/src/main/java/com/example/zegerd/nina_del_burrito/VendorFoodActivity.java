@@ -21,9 +21,6 @@ public class VendorFoodActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     private ListView menu;
-    private ArrayList<String> source;
-
-    public static final String ITEMS_FB = "Items";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,34 +33,15 @@ public class VendorFoodActivity extends AppCompatActivity {
         // Init UI items
         menu = findViewById(R.id.listvw_menu);
 
-        // Init array list
-        source = new ArrayList<>();
-
-        // Read database
-        FirebaseDatabase.getInstance().getReference().child(ITEMS_FB).child(mAuth.getCurrentUser().getUid())
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            String temp = snapshot.getValue(Item.class).getDescripcion();
-                            source.add(temp);
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-        });
-
-        // Init Adapter
-        ArrayAdapter itemAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, source);
-
-        // Set Adapter
-        menu.setAdapter(itemAdapter);
+        updateList();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        updateList();
+    }
 
     public void toAddFood(View v) {
         Intent intent = new Intent(this, AddFoodActivity.class);
@@ -71,6 +49,8 @@ public class VendorFoodActivity extends AppCompatActivity {
     }
 
     private void updateList() {
-
+        // Set Adapter
+        VendorItemAdapter itemAdapter = new VendorItemAdapter(this, mAuth.getCurrentUser().getUid());
+        menu.setAdapter(itemAdapter);
     }
 }
