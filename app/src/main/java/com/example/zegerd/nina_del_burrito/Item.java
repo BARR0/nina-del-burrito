@@ -54,6 +54,6 @@ public class Item {
     }
 
     public String toString() {
-        return nombre + ", " + descripcion + ", $" + precio;
+        return nombre + ", $" + precio;
     }
 }

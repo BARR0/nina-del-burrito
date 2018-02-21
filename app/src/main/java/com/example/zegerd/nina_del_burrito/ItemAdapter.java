@@ -27,6 +27,11 @@ public class ItemAdapter extends BaseAdapter {
         this.items = new ArrayList<>();
     }
 
+    public ItemAdapter(Activity activity, ArrayList<Item> items){
+        this.activity = activity;
+        this.items = items;
+    }
+
     @Override
     public int getCount() {
         return this.items.size();
