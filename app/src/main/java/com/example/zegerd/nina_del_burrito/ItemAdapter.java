@@ -58,7 +58,7 @@ public class ItemAdapter extends BaseAdapter {
         Item actual = items.get(i);
         name.setText(actual.getNombre());
         description.setText(actual.getDescripcion());
-        price.setText(actual.getPrecio() + "");
+        price.setText("$" + actual.getPrecio());
 
         return view;
     }

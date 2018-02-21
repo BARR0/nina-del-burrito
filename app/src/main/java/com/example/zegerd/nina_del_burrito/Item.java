@@ -52,4 +52,8 @@ public class Item {
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
     }
+
+    public String toString() {
+        return nombre + ", " + descripcion + ", $" + precio;
+    }
 }

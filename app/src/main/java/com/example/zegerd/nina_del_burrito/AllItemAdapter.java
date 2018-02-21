@@ -1,6 +1,7 @@
 package com.example.zegerd.nina_del_burrito;
 
 import android.app.Activity;
+import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,9 +21,12 @@ public class AllItemAdapter extends ItemAdapter {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot child: dataSnapshot.getChildren()) {
-                    Item tmp = dataSnapshot.getValue(Item.class);
-                    if (tmp.isDisponible())
-                        items.add(tmp);
+                    for (DataSnapshot child2: child.getChildren()) {
+                        Item tmp = child2.getValue(Item.class);
+                        if (tmp.isDisponible())
+                            items.add(tmp);
+                        Log.d("ITEM", child.toString());
+                    }
                 }
             }
 
