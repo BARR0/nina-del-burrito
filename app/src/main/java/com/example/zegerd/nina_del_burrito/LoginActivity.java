@@ -43,9 +43,6 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-
         // Init variables
         inputEmail = (EditText) findViewById(R.id.txt_user);
         inputPass = (EditText) findViewById(R.id.txt_pass);
@@ -57,8 +54,10 @@ public class LoginActivity extends AppCompatActivity {
         // Button Click listeners
 
         // TODO SignUp/register functionality
-        /* Add user when sign in
-           String userId = mAuth.getCurrentUser().getUid();
+
+        /*
+        Add user when sign in
+        String userId = mAuth.getCurrentUser().getUid();
         DatabaseReference currentUserDB = FirebaseDatabase.getInstance()
                                                             .getReference()
                                                             .child("Users")
@@ -69,7 +68,18 @@ public class LoginActivity extends AppCompatActivity {
         currentUserDB.setValue(newPost)
         https://www.youtube.com/watch?v=vkf5z1raSyE&t=1s
         https://www.androidhive.info/2016/10/android-working-with-firebase-realtime-database/
-         */
+        */
+        
+        /*
+        // Add user to DB
+        String userId = mAuth.getCurrentUser().getUid();
+        DatabaseReference currentUserDB = FirebaseDatabase.getInstance()
+                .getReference()
+                .child("Users")
+                .child(userId);
+        User u = new User(inputEmail.getText().toString(), 0);
+        currentUserDB.setValue(u);
+        */
 
         // TODO Reset password functionality
 
@@ -116,17 +126,6 @@ public class LoginActivity extends AppCompatActivity {
                                         Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                                     }
                                 } else {
-                                    /*
-                                    // Add user to DB
-                                    String userId = mAuth.getCurrentUser().getUid();
-                                    DatabaseReference currentUserDB = FirebaseDatabase.getInstance()
-                                            .getReference()
-                                            .child("Users")
-                                            .child(userId);
-                                    User u = new User(inputEmail.getText().toString(), 0);
-                                    currentUserDB.setValue(u);
-                                    */
-
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
                                 }

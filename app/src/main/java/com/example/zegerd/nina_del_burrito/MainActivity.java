@@ -83,40 +83,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showVendorScreen() {
-
         Intent intent = new Intent(MainActivity.this, VendorActivity.class);
         startActivity(intent);
         finish();
-        /*txtvw_name.setText(currentUserInfo.getUsername());
-        txtvw_greet.setText("Vendo Burritos");
-
-        // Use Fragments for this later
-        btn_itemMenu.setText("Agrega cosas atu tienda");
-        btn_itemMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AddFoodActivity.class);
-                startActivity(intent);
-            }
-        });*/
     }
 
     private void showClientScreen() {
         Intent intent = new Intent(MainActivity.this, UserActivity.class);
         startActivity(intent);
         finish();
-        /*txtvw_name.setText(currentUserInfo.getUsername());
-        txtvw_greet.setText("Quiero burritos");
-
-        // Use Fragments for this later
-        btn_itemMenu.setText("Pide algo a tu salon");
-        btn_itemMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, MainUserActivity.class);
-                startActivity(intent);
-            }
-        });*/
     }
 
 
