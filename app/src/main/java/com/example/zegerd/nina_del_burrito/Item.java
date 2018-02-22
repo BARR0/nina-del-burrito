@@ -9,16 +9,18 @@ public class Item {
     private String descripcion;
     private float precio;
     private boolean disponible;
+    private String vendorid;
 
     public Item() {
 
     }
 
-    public Item (String nom, String desc, float pre) {
+    public Item (String nom, String desc, float pre, String vendorid) {
         this.nombre = nom;
         this.descripcion = desc;
         this.precio = pre;
         this.disponible = true;
+        this.vendorid = vendorid;
     }
 
     public String getNombre() {
@@ -55,5 +57,13 @@ public class Item {
 
     public String toString() {
         return nombre + ", $" + precio;
+    }
+
+    public String getVendorid() {
+        return vendorid;
+    }
+
+    public void setVendorid(String vendorid) {
+        this.vendorid = vendorid;
     }
 }
