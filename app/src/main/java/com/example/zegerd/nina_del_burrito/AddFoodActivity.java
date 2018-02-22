@@ -42,7 +42,7 @@ public class AddFoodActivity extends AppCompatActivity {
         String itemDesc = desc.getText().toString();
         float itemPrice = Float.parseFloat(precio.getText().toString());
 
-        Item food = new Item(itemName, itemDesc, itemPrice);
+        Item food = new Item(itemName, itemDesc, itemPrice, mAuth.getCurrentUser().getUid());
 
         String userId = mAuth.getCurrentUser().getUid();
         DatabaseReference currentItemDB = FirebaseDatabase.getInstance()
