@@ -39,7 +39,7 @@ public class VendorActivity extends AppCompatActivity {
     }
 
     public void misPedidos(View v) {
-        Intent intent = new Intent(this, VendorOrdersActivity.class);
+        Intent intent = new Intent(this, LoadingVendorOrderActivity.class);
         startActivity(intent);
     }
 }
