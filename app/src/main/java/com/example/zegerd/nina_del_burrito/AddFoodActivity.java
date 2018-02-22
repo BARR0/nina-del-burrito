@@ -36,11 +36,15 @@ public class AddFoodActivity extends AppCompatActivity {
 
 
     public void addFood(View v){
-        // TODO authenticate empty fields
 
         String itemName = name.getText().toString();
         String itemDesc = desc.getText().toString();
-        float itemPrice = Float.parseFloat(precio.getText().toString());
+        String itemPriceText = precio.getText().toString();
+        if(itemPriceText.matches("") || itemName.matches("") || itemPriceText.matches("")){
+            Toast.makeText(this, "Hay campos vacíos", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        float itemPrice = Float.parseFloat(itemPriceText);
 
         Item food = new Item(itemName, itemDesc, itemPrice, mAuth.getCurrentUser().getUid());
 
@@ -51,9 +55,12 @@ public class AddFoodActivity extends AppCompatActivity {
                 .child(userId)
                 .child(food.getNombre());
         currentItemDB.setValue(food);
-
-        Toast.makeText(this, "Producto añadido", Toast.LENGTH_SHORT).show();
+        name.setText("");
+        desc.setText("");
+        precio.setText("");
+        Toast.makeText(this, "Producto " + itemName + " añadido", Toast.LENGTH_SHORT).show();
     }
+
 
     public void endAddFoof(View v) {
         Intent result = new Intent();
@@ -63,7 +70,7 @@ public class AddFoodActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        //super.onBackPressed();
 
         Intent result = new Intent();
         setResult(RESULT_OK, result);
