@@ -60,4 +60,13 @@ public class AddFoodActivity extends AppCompatActivity {
         setResult(RESULT_OK, result);
         finish();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent result = new Intent();
+        setResult(RESULT_OK, result);
+        finish();
+    }
 }

@@ -37,4 +37,9 @@ public class VendorActivity extends AppCompatActivity {
         mAuth.signOut();
         finish();
     }
+
+    public void misPedidos(View v) {
+        Intent intent = new Intent(this, VendorOrdersActivity.class);
+        startActivity(intent);
+    }
 }
