@@ -35,4 +35,14 @@
         android:layout_marginTop="39dp"
         android:onClick="miMenu"
         android:text="@string/mi_menu" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/button3"
+        android:layout_below="@+id/btn_miMenu"
+        android:layout_marginTop="43dp"
+        android:onClick="misPedidos"
+        android:text="Mis pedidos" />
 </RelativeLayout>
