@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.zegerd.nina_del_burrito.CarritoActivity">
+    tools:context="com.example.zegerd.nina_del_burrito.user_activities.CarritoActivity">
 
     <Button
         android:id="@+id/b_pay"

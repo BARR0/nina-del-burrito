@@ -1,4 +1,4 @@
-package com.example.zegerd.nina_del_burrito;
+package com.example.zegerd.nina_del_burrito.classes;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 

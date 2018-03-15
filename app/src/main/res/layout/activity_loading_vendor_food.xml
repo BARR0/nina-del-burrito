@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.zegerd.nina_del_burrito.LoadingVendorFoodActivity">
+    tools:context="com.example.zegerd.nina_del_burrito.loading_activities.LoadingVendorFoodActivity">
 
     <TextView
         android:id="@+id/textView"

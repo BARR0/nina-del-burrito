@@ -1,4 +1,4 @@
-package com.example.zegerd.nina_del_burrito;
+package com.example.zegerd.nina_del_burrito.vendor_activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.zegerd.nina_del_burrito.R;
+import com.example.zegerd.nina_del_burrito.classes.Item;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

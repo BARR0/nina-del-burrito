@@ -1,4 +1,4 @@
-package com.example.zegerd.nina_del_burrito;
+package com.example.zegerd.nina_del_burrito.classes;
 
 /**
  * Created by Zegerd on 2/20/2018.

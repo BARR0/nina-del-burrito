@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.zegerd.nina_del_burrito.VendorOrdersActivity">
+    tools:context="com.example.zegerd.nina_del_burrito.vendor_activities.VendorOrdersActivity">
 
     <ListView
         android:id="@+id/lv_pedidos"

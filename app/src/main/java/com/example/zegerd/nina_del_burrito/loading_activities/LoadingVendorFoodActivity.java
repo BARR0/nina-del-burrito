@@ -1,17 +1,16 @@
-package com.example.zegerd.nina_del_burrito;
+package com.example.zegerd.nina_del_burrito.loading_activities;
 
 import android.content.Intent;
 import android.os.Handler;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.example.zegerd.nina_del_burrito.R;
+import com.example.zegerd.nina_del_burrito.vendor_activities.VendorFoodActivity;
+import com.example.zegerd.nina_del_burrito.adapters.VendorItemAdapter;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.io.Serializable;
 
 public class LoadingVendorFoodActivity extends AppCompatActivity {
 
