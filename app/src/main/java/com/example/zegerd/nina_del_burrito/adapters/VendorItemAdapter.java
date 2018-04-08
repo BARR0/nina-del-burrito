@@ -15,13 +15,16 @@ import com.google.firebase.database.ValueEventListener;
 public class VendorItemAdapter extends ItemAdapter {
     public VendorItemAdapter(Activity activity, String userId) {
         super(activity);
-        FirebaseDatabase.getInstance().getReference().child("Items").child(userId)
+        final String vendorId = userId;
+        FirebaseDatabase.getInstance().getReference().child("ItemsAll")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     Item tmp = child.getValue(Item.class);
-                    items.add(tmp);
+                    if (tmp.getVendorid().equals(vendorId)) {
+                        items.add(tmp);
+                    }
                 }
             }
 
