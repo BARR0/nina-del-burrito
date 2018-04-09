@@ -16,16 +16,14 @@ import com.google.firebase.database.ValueEventListener;
 public class AllItemAdapter extends ItemAdapter {
     public AllItemAdapter(Activity activity) {
         super(activity);
-        FirebaseDatabase.getInstance().getReference().child("Items").addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("ItemsAll").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot child: dataSnapshot.getChildren()) {
-                    for (DataSnapshot child2: child.getChildren()) {
-                        Item tmp = child2.getValue(Item.class);
-                        if (tmp.isDisponible())
-                            items.add(tmp);
-                        Log.d("ITEM", child.toString());
-                    }
+                    Item tmp = child.getValue(Item.class);
+                    if (tmp.isDisponible())
+                        items.add(tmp);
+                    Log.d("ITEM", child.toString());
                 }
             }
 
@@ -36,3 +34,17 @@ public class AllItemAdapter extends ItemAdapter {
         });
     }
 }
+
+/* For reference the double iteration
+@Override
+    public void onDataChange(DataSnapshot dataSnapshot) {
+        for (DataSnapshot child: dataSnapshot.getChildren()) {
+            for (DataSnapshot child2: child.getChildren()) {
+                Item tmp = child2.getValue(Item.class);
+                if (tmp.isDisponible())
+                    items.add(tmp);
+                Log.d("ITEM", child.toString());
+            }
+        }
+    }
+*/

@@ -53,9 +53,8 @@ public class AddFoodActivity extends AppCompatActivity {
         String userId = mAuth.getCurrentUser().getUid();
         DatabaseReference currentItemDB = FirebaseDatabase.getInstance()
                 .getReference()
-                .child("Items")
-                .child(userId)
-                .child(food.getNombre());
+                .child("ItemsAll")
+                .child(userId + food.getNombre());
         currentItemDB.setValue(food);
         name.setText("");
         desc.setText("");
