@@ -9,54 +9,79 @@
 
     <EditText
         android:id="@+id/editTxt_foodNombre"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
         android:ems="10"
         android:hint="Nombre"
         android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/editTxt_foodDesc"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/editTxt_foodNombre"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/editTxt_foodNombre"
-        android:layout_marginTop="30dp"
         android:ems="10"
         android:hint="Descripción"
         android:inputType="textMultiLine" />
 
     <Button
         android:id="@+id/button_addFood"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editTxt_foodDesc"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
         android:onClick="addFood"
         android:text="Añadir" />
 
     <EditText
         android:id="@+id/editTxt_foodPrecio"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editTxt_foodDesc"
         android:ems="10"
         android:hint="Precio"
         android:inputType="numberDecimal" />
 
-    <Button
-        android:id="@+id/button4"
+    <EditText
+        android:id="@+id/editTextCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/button_addFood"
-        android:layout_below="@+id/button_addFood"
-        android:layout_marginTop="35dp"
-        android:onClick="endAddFoof"
-        android:text="regresar" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editTxt_foodPrecio"
+        android:layout_toStartOf="@+id/buttonCategory"
+        android:ems="10"
+        android:hint="Category"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/buttonCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/editTextCategory"
+        android:layout_alignParentEnd="true"
+        android:onClick="addCategory"
+        android:text="Agregar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editTextCategory">
+
+        <ListView
+            android:id="@+id/listViewCategory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="52dp">
+
+        </ListView>
+
+    </RelativeLayout>
 
 </RelativeLayout>

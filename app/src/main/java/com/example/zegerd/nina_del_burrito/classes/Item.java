@@ -1,5 +1,7 @@
 package com.example.zegerd.nina_del_burrito.classes;
 
+import java.util.List;
+
 /**
  * Created by Zegerd on 2/20/2018.
  */
@@ -10,18 +12,29 @@ public class Item {
     private float precio;
     private boolean disponible;
     private String vendorid;
+    private List<String> categories;
 
     public Item() {
 
     }
 
-    public Item (String nom, String desc, float pre, String vendorid) {
+    public List<String> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<String> categories) {
+        this.categories = categories;
+    }
+
+    public Item (String nom, String desc, float pre, String vendorid, List<String> categories) {
         this.nombre = nom;
         this.descripcion = desc;
         this.precio = pre;
         this.disponible = true;
         this.vendorid = vendorid;
+        this.categories = categories;
     }
+
 
     public String getNombre() {
         return nombre;
