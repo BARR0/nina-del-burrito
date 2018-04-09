@@ -14,4 +14,11 @@
     <string name="sign_out">Sign out</string>
     <string name="mi_menu">Mi menu</string>
     <string name="agregar_nuevo_producto">Agregar nuevo producto</string>
+    <string name="already_registerd">Already registered. Login Me!</string>
+
+    <string-array name="roles_array">
+        <item>Vendedor</item>
+        <item>Comprador</item>
+    </string-array>
+
 </resources>

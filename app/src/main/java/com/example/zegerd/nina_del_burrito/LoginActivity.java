@@ -53,7 +53,13 @@ public class LoginActivity extends AppCompatActivity {
 
         // Button Click listeners
 
-        // TODO SignUp/register functionality
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), SignupActivity.class));
+                finish();
+            }
+        });
 
         /*
         Add user when sign in
