@@ -1,23 +1,30 @@
 package com.example.zegerd.nina_del_burrito.classes;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Order {
+public class Order implements Serializable{
     private int quantity;
     private String description;
     private Date orderDate;
     private String itemId;
     private String itemName;
+    private String clientName;
+    private String key;
+    private String clientId;
 
     public Order () {
     }
 
-    public Order (int q, String desc, Date date, String id, String name) {
+    public Order (int q, String desc, Date date, String id, String name, String k, String clientName, String cId) {
         this.quantity = q;
         this.description = desc;
         this.orderDate = date;
         this.itemId = id;
         this.itemName = name;
+        this.key = k;
+        this.clientName = clientName;
+        this.clientId = cId;
     }
 
     public int getQuantity() {
@@ -58,5 +65,29 @@ public class Order {
 
     public void setItemName(String itemName) {
         this.itemName = itemName;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
     }
 }

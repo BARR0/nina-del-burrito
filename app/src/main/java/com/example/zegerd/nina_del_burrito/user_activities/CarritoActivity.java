@@ -54,13 +54,22 @@ public class CarritoActivity extends AppCompatActivity {
         String vendorId = item.getVendorid();
         String clientId = mAuth.getCurrentUser().getUid();
 
-        Order order = new Order(quantity, "En mi casa", new Date(), vendorId + item.getNombre(), item.getNombre());
-
         DatabaseReference currentItemDB = FirebaseDatabase.getInstance()
                 .getReference()
                 .child("ClientOrders")
                 .child(vendorId)
                 .child(clientId);
-        currentItemDB.push().setValue(order); // push() generates an unique id
+        // push() generates an unique id
+        String key = currentItemDB.push().getKey();
+        Order order = new Order(quantity,
+                "En mi casa",
+                new Date(),
+                vendorId + item.getNombre(),
+                item.getNombre(),
+                key,
+                "Client name",
+                clientId);
+
+        currentItemDB.child(key).setValue(order);
     }
 }
