@@ -14,6 +14,7 @@ public class Item implements Serializable{
     private boolean disponible;
     private String vendorid;
     private List<String> categories;
+    private String itemPicture;
 
     public Item() {
 
@@ -34,6 +35,7 @@ public class Item implements Serializable{
         this.disponible = true;
         this.vendorid = vendorid;
         this.categories = categories;
+        this.itemPicture = "";
     }
 
 
@@ -81,5 +83,11 @@ public class Item implements Serializable{
         this.vendorid = vendorid;
     }
 
+    public String getItemPicture() {
+        return itemPicture;
+    }
 
+    public void setItemPicture(String itemPicture) {
+        this.itemPicture = itemPicture;
+    }
 }
