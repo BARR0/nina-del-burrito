@@ -27,7 +27,8 @@
         <activity android:name=".vendor_activities.VendorOrdersActivity" />
         <activity android:name=".loading_activities.LoadingVendorOrderActivity" />
         <activity android:name=".vendor_activities.ViewOrderActivity" />
-        <activity android:name=".SignupActivity"></activity>
+        <activity android:name=".SignupActivity" />
+        <activity android:name=".vendor_activities.ViewFoodDetailsActivity"></activity>
     </application>
 
 </manifest>

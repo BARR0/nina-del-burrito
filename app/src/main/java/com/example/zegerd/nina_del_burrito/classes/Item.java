@@ -1,12 +1,13 @@
 package com.example.zegerd.nina_del_burrito.classes;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Zegerd on 2/20/2018.
  */
 
-public class Item {
+public class Item implements Serializable{
     private String nombre;
     private String descripcion;
     private float precio;
@@ -79,4 +80,6 @@ public class Item {
     public void setVendorid(String vendorid) {
         this.vendorid = vendorid;
     }
+
+
 }
