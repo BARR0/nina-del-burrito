@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.zegerd.nina_del_burrito.adapters.AllItemAdapter;
 import com.example.zegerd.nina_del_burrito.classes.User;
 import com.example.zegerd.nina_del_burrito.user_activities.UserActivity;
 import com.example.zegerd.nina_del_burrito.vendor_activities.VendorActivity;
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int VENDEDOR = 1;
     public static final int CLIENT = 0;
+
+    public static AllItemAdapter allItemAdapter;
 
     // Instance of FireBaseAuth
     private FirebaseAuth mAuth;
@@ -89,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showClientScreen() {
+        allItemAdapter = new AllItemAdapter(this);
         int secondsDelayed = 1;
         new Handler().postDelayed(new Runnable() {
             public void run() {

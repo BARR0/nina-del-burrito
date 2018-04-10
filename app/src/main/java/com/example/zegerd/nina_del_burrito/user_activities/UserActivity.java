@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.zegerd.nina_del_burrito.MainActivity;
 import com.example.zegerd.nina_del_burrito.R;
 import com.example.zegerd.nina_del_burrito.adapters.AllItemAdapter;
 import com.example.zegerd.nina_del_burrito.adapters.ItemAdapter;
@@ -28,7 +29,8 @@ public class UserActivity extends AppCompatActivity implements AdapterView.OnIte
 
         mAuth = FirebaseAuth.getInstance();
         lv_items = (ListView)findViewById(R.id.lv_menu);
-        itemAdapter = new AllItemAdapter(this);
+        //itemAdapter = new AllItemAdapter(this);
+        itemAdapter = MainActivity.allItemAdapter;
         lv_items.setAdapter(itemAdapter);
         lv_items.setOnItemClickListener(this);
 
