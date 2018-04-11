@@ -35,7 +35,7 @@ public class Item implements Serializable{
         this.disponible = true;
         this.vendorid = vendorid;
         this.categories = categories;
-        this.itemPicture = "";
+        this.itemPicture = null;
     }
 
 

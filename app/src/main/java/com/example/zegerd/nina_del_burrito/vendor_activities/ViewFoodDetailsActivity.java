@@ -52,10 +52,10 @@ public class ViewFoodDetailsActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference itemRef;
     private StorageReference mStorageReference;
+    private StorageReference pictureItemRef;
 
     // Temporal variables
     private Item currentItem;
-    private String currentItemUrlPic;
     private Uri imageHoldUri = null;
 
     @Override
@@ -74,7 +74,6 @@ public class ViewFoodDetailsActivity extends AppCompatActivity {
         // Get selected item
         Intent intent = getIntent();
         currentItem = (Item) intent.getSerializableExtra(VendorFoodActivity.FOOD_ITEM);
-        currentItemUrlPic = currentItem.getItemPicture();
 
         // Init FireBase stuff
         mAuth = FirebaseAuth.getInstance();
@@ -168,6 +167,7 @@ public class ViewFoodDetailsActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 this.imageHoldUri = result.getUri();
                 this.foodImage.setImageURI(imageHoldUri);
+                pictureItemRef = mStorageReference.child(imageHoldUri.getLastPathSegment());
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Exception error = result.getError();
                 // Toast of the error
@@ -199,15 +199,12 @@ public class ViewFoodDetailsActivity extends AppCompatActivity {
 
         if (imageHoldUri != null) {
             // Query to store the picture
-            final String itemPicUrl = imageHoldUri.getLastPathSegment();
-            StorageReference pictureItemRef = mStorageReference.child(itemPicUrl);
-            Toast.makeText(this, "Entro", Toast.LENGTH_SHORT).show();
-
-            pictureItemRef.putFile(imageHoldUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            pictureItemRef.putFile(imageHoldUri).addOnSuccessListener(ViewFoodDetailsActivity.this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Uri imageUrl = taskSnapshot.getDownloadUrl();
-                    currentItemUrlPic = imageUrl.toString();
+                    currentItem.setItemPicture(imageUrl.toString());
+                    itemRef.setValue(currentItem);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -216,7 +213,6 @@ public class ViewFoodDetailsActivity extends AppCompatActivity {
                 }
             });
         }
-        currentItem.setItemPicture(currentItemUrlPic);
         itemRef.setValue(currentItem);
         Toast.makeText(this, "Producto modificado", Toast.LENGTH_SHORT).show();
         //this.goBack();
