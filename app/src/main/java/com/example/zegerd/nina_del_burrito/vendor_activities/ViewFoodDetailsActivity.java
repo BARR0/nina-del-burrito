@@ -59,12 +59,12 @@ public class ViewFoodDetailsActivity extends AppCompatActivity {
     // Temporal variables
     private Item currentItem;
     private Uri imageHoldUri = null;
+    private boolean hasOldPhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_food_details);
-
 
         // Init UI elements
         name = findViewById(R.id.txtvw_detailName);
@@ -76,6 +76,7 @@ public class ViewFoodDetailsActivity extends AppCompatActivity {
         // Get selected item
         Intent intent = getIntent();
         currentItem = (Item) intent.getSerializableExtra(VendorFoodActivity.FOOD_ITEM);
+        hasOldPhoto = false;
 
         // Init FireBase stuff
         mAuth = FirebaseAuth.getInstance();
@@ -96,7 +97,8 @@ public class ViewFoodDetailsActivity extends AppCompatActivity {
         availabelBox.setChecked(currentItem.isDisponible());
 
         if (currentItem.getItemPicture() != null) {
-            // There is an url
+            // There is an url picture
+            hasOldPhoto = true;
             updatePicture();
         }
 
@@ -210,12 +212,11 @@ public class ViewFoodDetailsActivity extends AppCompatActivity {
         currentItem.setDisponible(availableItem);
 
         if (imageHoldUri != null) {
-            // Delete previous picture
-            if (currentItem.getItemPicture() != null) {
-                // evaluate if is changed again on the same activity
-                // 
-                Uri currentDBPath = Uri.parse(currentItem.getItemPicture());
-                mStorageReference.child(currentDBPath.getLastPathSegment()).delete();
+
+            if (hasOldPhoto) {
+                // Delete old picture in database
+                StorageReference httpRef = FirebaseStorage.getInstance().getReferenceFromUrl(currentItem.getItemPicture());
+                httpRef.delete();
             }
 
             // Query to store the picture
@@ -226,6 +227,7 @@ public class ViewFoodDetailsActivity extends AppCompatActivity {
                     Uri imageUrl = taskSnapshot.getDownloadUrl();
                     currentItem.setItemPicture(imageUrl.toString());
                     itemRef.setValue(currentItem);
+                    hasOldPhoto = true;
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
