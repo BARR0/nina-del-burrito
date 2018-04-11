@@ -19,8 +19,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.zegerd.nina_del_burrito.R;
 import com.example.zegerd.nina_del_burrito.classes.Item;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -93,6 +95,11 @@ public class ViewFoodDetailsActivity extends AppCompatActivity {
         description.setText(currentItem.getDescripcion());
         availabelBox.setChecked(currentItem.isDisponible());
 
+        if (currentItem.getItemPicture() != null) {
+            // There is an url
+            updatePicture();
+        }
+
         foodImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,6 +107,12 @@ public class ViewFoodDetailsActivity extends AppCompatActivity {
                 pickFoodPicture();
             }
         });
+    }
+
+    private void updatePicture() {
+        StorageReference httpRef = FirebaseStorage.getInstance().getReferenceFromUrl(currentItem.getItemPicture());
+        // Save image directly into the ImageView
+        Glide.with(this).load(httpRef).into(foodImage);
     }
 
     private void pickFoodPicture() {
@@ -167,7 +180,6 @@ public class ViewFoodDetailsActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 this.imageHoldUri = result.getUri();
                 this.foodImage.setImageURI(imageHoldUri);
-                pictureItemRef = mStorageReference.child(imageHoldUri.getLastPathSegment());
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Exception error = result.getError();
                 // Toast of the error
@@ -198,7 +210,16 @@ public class ViewFoodDetailsActivity extends AppCompatActivity {
         currentItem.setDisponible(availableItem);
 
         if (imageHoldUri != null) {
+            // Delete previous picture
+            if (currentItem.getItemPicture() != null) {
+                // evaluate if is changed again on the same activity
+                // 
+                Uri currentDBPath = Uri.parse(currentItem.getItemPicture());
+                mStorageReference.child(currentDBPath.getLastPathSegment()).delete();
+            }
+
             // Query to store the picture
+            pictureItemRef = mStorageReference.child(imageHoldUri.getLastPathSegment());
             pictureItemRef.putFile(imageHoldUri).addOnSuccessListener(ViewFoodDetailsActivity.this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
