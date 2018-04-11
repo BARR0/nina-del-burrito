@@ -104,6 +104,7 @@ public class NavigationUserActivity extends AppCompatActivity
 
     private void viewCarrito() {
         Intent intent = new Intent(this, CarritoActivity.class);
+        intent.putExtra(MainActivity.USER_DATA, currentUser);
         startActivityForResult(intent,0);
     }
 
