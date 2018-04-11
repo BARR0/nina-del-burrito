@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.example.zegerd.nina_del_burrito.adapters.AllItemAdapter;
 import com.example.zegerd.nina_del_burrito.classes.User;
+import com.example.zegerd.nina_del_burrito.user_activities.NavigationUserActivity;
 import com.example.zegerd.nina_del_burrito.user_activities.UserActivity;
 import com.example.zegerd.nina_del_burrito.vendor_activities.VendorActivity;
 import com.example.zegerd.nina_del_burrito.vendor_activities.VendorOrdersActivity;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int CLIENT = 0;
 
     public static AllItemAdapter allItemAdapter;
+    public static final String USER_DATA = "user";
 
     // Instance of FireBaseAuth
     private FirebaseAuth mAuth;
@@ -97,7 +99,8 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 //startActivity(new Intent(getApplicationContext(), VendorOrdersActivity.class));
-                Intent intent = new Intent(MainActivity.this, UserActivity.class);
+                Intent intent = new Intent(MainActivity.this, NavigationUserActivity.class);
+                intent.putExtra(USER_DATA, currentUserInfo);
                 startActivity(intent);
                 finish();
             }

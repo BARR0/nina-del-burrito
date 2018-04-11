@@ -2,12 +2,14 @@ package com.example.zegerd.nina_del_burrito.classes;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.io.Serializable;
+
 /**
  * Created by Zegerd on 2/7/2018.
  */
 
 @IgnoreExtraProperties
-public class User {
+public class User implements Serializable{
     private String username;
     private int rolId; // 0 client, 1 seller
 

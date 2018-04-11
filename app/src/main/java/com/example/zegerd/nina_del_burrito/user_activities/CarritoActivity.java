@@ -35,7 +35,7 @@ public class CarritoActivity extends AppCompatActivity {
 
         lv_carrito = (ListView)findViewById(R.id.lv_carrito);
         b_pay = (Button)findViewById(R.id.b_pay);
-        lv_carrito.setAdapter(new ItemAdapter(this, UserActivity.carrito));
+        lv_carrito.setAdapter(new ItemAdapter(this, NavigationUserActivity.carrito));
         response = RESULT_NOT_BOUGHT;
         setResult(response);
     }
@@ -45,7 +45,7 @@ public class CarritoActivity extends AppCompatActivity {
         setResult(response);
         // TODO change this with the quantity chosen by the user
         int quantity = 1;
-        for (Item item: UserActivity.carrito) {
+        for (Item item: NavigationUserActivity.carrito) {
             setOrders(item, quantity);
         }
     }
