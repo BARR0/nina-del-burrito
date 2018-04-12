@@ -1,5 +1,7 @@
 package com.example.zegerd.nina_del_burrito.classes;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -13,11 +15,12 @@ public class Order implements Serializable{
     private String clientName;
     private String key;
     private String clientId;
+    private LatLng location;
 
     public Order () {
     }
 
-    public Order (int q, String desc, GregorianCalendar date, String id, String name, String k, String clientName, String cId) {
+    public Order (int q, String desc, GregorianCalendar date, String id, String name, String k, String clientName, String cId, LatLng location) {
         this.quantity = q;
         this.description = desc;
         this.orderDate = date;
@@ -26,8 +29,16 @@ public class Order implements Serializable{
         this.key = k;
         this.clientName = clientName;
         this.clientId = cId;
+        this.location = location;
     }
 
+    public LatLng getLocation() {
+        return location;
+    }
+
+    public void setLocation(LatLng location) {
+        this.location = location;
+    }
     public int getQuantity() {
         return quantity;
     }
