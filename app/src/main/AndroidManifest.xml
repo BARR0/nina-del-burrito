@@ -61,7 +61,8 @@
 
         <activity
             android:name=".user_activities.DeliveryActivity"
-            android:label="@string/title_activity_delivery"></activity>
+            android:label="@string/title_activity_delivery" />
+        <activity android:name=".user_activities.PlaceOrderActivity"></activity>
     </application>
 
 </manifest>

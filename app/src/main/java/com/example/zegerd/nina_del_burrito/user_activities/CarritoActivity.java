@@ -1,5 +1,6 @@
 package com.example.zegerd.nina_del_burrito.user_activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,14 +19,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class CarritoActivity extends AppCompatActivity {
-    public static final int RESULT_BOUGHT = 1;
-    public static final int RESULT_NOT_BOUGHT = 0;
     private ListView lv_carrito;
     private Button b_pay;
-    private int response;
     private FirebaseAuth mAuth;
     private User currentUser;
 
@@ -42,41 +41,18 @@ public class CarritoActivity extends AppCompatActivity {
         lv_carrito = (ListView)findViewById(R.id.lv_carrito);
         b_pay = (Button)findViewById(R.id.b_pay);
         lv_carrito.setAdapter(new ItemAdapter(this, NavigationUserActivity.carrito));
-        response = RESULT_NOT_BOUGHT;
-        setResult(response);
     }
 
     public void buy(View v){
-        response = RESULT_BOUGHT;
-        setResult(response);
-        // TODO change this with the quantity chosen by the user
-        int quantity = 1;
-        for (Item item: NavigationUserActivity.carrito) {
-            setOrders(item, quantity);
-        }
-        Toast.makeText(this, "Orden Enviada", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, PlaceOrderActivity.class);
+        intent.putExtra(MainActivity.USER_DATA, currentUser);
+        startActivityForResult(intent,0);
     }
 
-    private void setOrders(Item item, int quantity){
-        String vendorId = item.getVendorid();
-        String clientId = mAuth.getCurrentUser().getUid();
-
-        DatabaseReference currentItemDB = FirebaseDatabase.getInstance()
-                .getReference()
-                .child("ClientOrders")
-                .child(vendorId)
-                .child(clientId);
-        // push() generates an unique id
-        String key = currentItemDB.push().getKey();
-        Order order = new Order(quantity,
-                "En mi casa",
-                new Date(),
-                vendorId + item.getNombre(),
-                item.getNombre(),
-                key,
-                currentUser.getUsername(),
-                clientId);
-
-        currentItemDB.child(key).setValue(order);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        setResult(resultCode);
+        finish();
     }
 }

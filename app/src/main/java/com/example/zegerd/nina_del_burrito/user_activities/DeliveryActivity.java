@@ -1,7 +1,11 @@
 package com.example.zegerd.nina_del_burrito.user_activities;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -44,5 +48,27 @@ public class DeliveryActivity extends FragmentActivity implements OnMapReadyCall
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    }
+
+    public void setMyLocation(){
+        // verificar que haya permiso y si hay habilitar capa.
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            // Pedir permiso
+            // arreglo de strings que son permisos
+            // request code - igual que con actividades
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 0);
+        }else{
+            mMap.setMyLocationEnabled(true);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] p, int[] r){
+        if(requestCode == 0 && r[0] == PackageManager.PERMISSION_GRANTED){
+            Log.wtf("PERMISOS", "Autorizado");
+            setMyLocation();
+        }else{
+            Log.wtf("PERMISOS", "No Autorizado");
+        }
     }
 }

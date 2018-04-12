@@ -2,11 +2,12 @@ package com.example.zegerd.nina_del_burrito.classes;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Order implements Serializable{
     private int quantity;
     private String description;
-    private Date orderDate;
+    private GregorianCalendar orderDate;
     private String itemId;
     private String itemName;
     private String clientName;
@@ -16,7 +17,7 @@ public class Order implements Serializable{
     public Order () {
     }
 
-    public Order (int q, String desc, Date date, String id, String name, String k, String clientName, String cId) {
+    public Order (int q, String desc, GregorianCalendar date, String id, String name, String k, String clientName, String cId) {
         this.quantity = q;
         this.description = desc;
         this.orderDate = date;
@@ -43,11 +44,11 @@ public class Order implements Serializable{
         this.description = description;
     }
 
-    public Date getOrderDate() {
+    public GregorianCalendar getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(GregorianCalendar orderDate) {
         this.orderDate = orderDate;
     }
 

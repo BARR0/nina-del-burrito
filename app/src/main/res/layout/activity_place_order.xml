@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".user_activities.PlaceOrderActivity">
+
+    <TextView
+        android:id="@+id/textViewTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonPay"
+        android:layout_alignParentStart="true"
+        android:text="Total"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/buttonPay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="buy"
+        android:text="Pagar" />
+
+    <EditText
+        android:id="@+id/editTextDetails"
+        android:layout_width="match_parent"
+        android:layout_height="148dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/buttonPickDate"
+        android:ems="10"
+        android:hint="Detalles"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/buttonLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextDetails"
+        android:layout_centerHorizontal="true"
+        android:onClick="getLocation"
+        android:text="Set Location" />
+
+    <TextView
+        android:id="@+id/textViewDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/buttonPickDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textViewDate"
+        android:onClick="setTime"
+        android:text="Change Time" />
+</RelativeLayout>

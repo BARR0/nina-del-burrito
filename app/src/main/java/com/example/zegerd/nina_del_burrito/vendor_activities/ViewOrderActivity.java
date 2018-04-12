@@ -15,6 +15,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.GregorianCalendar;
+
 public class ViewOrderActivity extends AppCompatActivity {
 
     private TextView tv_name, tv_quantity, tv_desc, tv_date, tv_client;
@@ -43,7 +45,7 @@ public class ViewOrderActivity extends AppCompatActivity {
         tv_name.setText(tmp.getItemName());
         tv_quantity.setText("" + tmp.getQuantity());
         tv_desc.setText(tmp.getDescription());
-        tv_date.setText("" + tmp.getOrderDate().getHours() + ":" + tmp.getOrderDate().getMinutes());
+        tv_date.setText("" + tmp.getOrderDate().get(GregorianCalendar.HOUR) + ":" + tmp.getOrderDate().get(GregorianCalendar.MINUTE));
         tv_client.setText(tmp.getClientName());
     }
 
