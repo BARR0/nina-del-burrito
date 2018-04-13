@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ public class ViewOrderActivity extends AppCompatActivity {
     private String orderKey;
     private String orderClientId;
     private FirebaseAuth mAuth;
+    private Order tmp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +40,14 @@ public class ViewOrderActivity extends AppCompatActivity {
         tv_client = findViewById(R.id.txtvw_orderClient);
 
         Intent intent = getIntent();
-        Order tmp = (Order) intent.getSerializableExtra(VendorOrdersActivity.ORDER_NAME);
+        tmp = (Order) intent.getSerializableExtra(VendorOrdersActivity.ORDER_NAME);
 
         orderKey = tmp.getKey();
         orderClientId = tmp.getClientId();
         tv_name.setText(tmp.getItemName());
         tv_quantity.setText("" + tmp.getQuantity());
         tv_desc.setText(tmp.getDescription());
-        tv_date.setText("" + tmp.getOrderDate().get(GregorianCalendar.HOUR) + ":" + tmp.getOrderDate().get(GregorianCalendar.MINUTE));
+        tv_date.setText("" + tmp.getHour() + ":" + tmp.getMinute());
         tv_client.setText(tmp.getClientName());
     }
 
@@ -72,5 +74,12 @@ public class ViewOrderActivity extends AppCompatActivity {
         setResult(RESULT_OK, result);
         Toast.makeText(this, "Orden Completada", Toast.LENGTH_SHORT).show();
         finish();
+    }
+
+    public void viewLocation(View v){
+        Intent intent = new Intent(this, ViewOrderLocationActivity.class);
+        intent.putExtra("lat", tmp.getLat());
+        intent.putExtra("lng", tmp.getLng());
+
     }
 }

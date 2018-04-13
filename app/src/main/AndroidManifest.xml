@@ -63,8 +63,10 @@
         <activity
             android:name=".user_activities.DeliveryActivity"
             android:label="@string/title_activity_delivery" />
-        <activity android:name=".user_activities.PlaceOrderActivity"></activity>
-
+        <activity android:name=".user_activities.PlaceOrderActivity" />
+        <activity
+            android:name=".vendor_activities.ViewOrderLocationActivity"
+            android:label="@string/title_activity_view_order_location"></activity>
     </application>
 
 </manifest>

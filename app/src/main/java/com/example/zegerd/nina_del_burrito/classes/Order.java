@@ -15,7 +15,8 @@ public class Order implements Serializable{
     private String clientName;
     private String key;
     private String clientId;
-    private LatLng location;
+    private double lat, lng;
+    private int hour, minute;
 
     public Order () {
     }
@@ -23,22 +24,57 @@ public class Order implements Serializable{
     public Order (int q, String desc, GregorianCalendar date, String id, String name, String k, String clientName, String cId, LatLng location) {
         this.quantity = q;
         this.description = desc;
-        this.orderDate = date;
+//        this.orderDate = date;
+        this.hour = date.get(GregorianCalendar.HOUR);
+        this.minute = date.get(GregorianCalendar.MINUTE);
         this.itemId = id;
         this.itemName = name;
         this.key = k;
         this.clientName = clientName;
         this.clientId = cId;
-        this.location = location;
+        this.lat = location.latitude;
+        this.lng = location.longitude;
     }
 
-    public LatLng getLocation() {
-        return location;
+    public int getHour() {
+        return hour;
     }
 
-    public void setLocation(LatLng location) {
-        this.location = location;
+    public void setHour(int hour) {
+        this.hour = hour;
     }
+
+    public int getMinute() {
+        return minute;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
+
+    //    public LatLng getLocation() {
+//        return location;
+//    }
+//
+//    public void setLocation(LatLng location) {
+//        this.location = location;
+//    }
     public int getQuantity() {
         return quantity;
     }
@@ -55,13 +91,13 @@ public class Order implements Serializable{
         this.description = description;
     }
 
-    public GregorianCalendar getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(GregorianCalendar orderDate) {
-        this.orderDate = orderDate;
-    }
+//    public GregorianCalendar getOrderDate() {
+//        return orderDate;
+//    }
+//
+//    public void setOrderDate(GregorianCalendar orderDate) {
+//        this.orderDate = orderDate;
+//    }
 
     public String getItemId() {
         return itemId;

@@ -114,4 +114,13 @@
         android:layout_marginBottom="98dp"
         android:onClick="deleteOrder"
         android:text="COmpletar Orden" />
+
+    <Button
+        android:id="@+id/buttonLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtvw_orderClient"
+        android:layout_centerHorizontal="true"
+        android:onClick="viewLocation"
+        android:text="Location" />
 </RelativeLayout>
