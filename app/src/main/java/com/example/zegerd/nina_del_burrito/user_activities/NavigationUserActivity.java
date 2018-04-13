@@ -14,27 +14,41 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zegerd.nina_del_burrito.MainActivity;
 import com.example.zegerd.nina_del_burrito.R;
+import com.example.zegerd.nina_del_burrito.adapters.CategoryItemAdapter;
 import com.example.zegerd.nina_del_burrito.adapters.ItemAdapter;
 import com.example.zegerd.nina_del_burrito.classes.Item;
 import com.example.zegerd.nina_del_burrito.classes.User;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class NavigationUserActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
+
+    public final String[] CATEGORIES = {"todo", "desayuno", "comida", "postre", "cena"};
 
     private FirebaseAuth mAuth;
     private ListView lv_items;
     private ItemAdapter itemAdapter;
     private User currentUser;
+    private Spinner spinnerCategory;
+    private Map<String, ListAdapter> adapters;
 
     public static ArrayList<Item> carrito;
 
@@ -75,6 +89,30 @@ public class NavigationUserActivity extends AppCompatActivity
             name.setText("Vendedor");
         } else name.setText("Comprador");
 
+        adapters = new HashMap<String, ListAdapter>();
+        for (String s : CATEGORIES)
+            adapters.put(s, new CategoryItemAdapter(NavigationUserActivity.this, s));
+
+        spinnerCategory = (Spinner)findViewById(R.id.spinnerCategory);
+        List<String> cats = Arrays.asList(CATEGORIES);
+        final SpinnerAdapter adapter = new ArrayAdapter<String>(this, R.layout.catergory_row, R.id.textViewCategory, cats);
+        spinnerCategory.setAdapter(adapter);
+        spinnerCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String s = adapter.getItem(i).toString();
+                if (s.equals(CATEGORIES[0])){
+                    lv_items.setAdapter(itemAdapter);
+                    return;
+                }
+                lv_items.setAdapter(adapters.get(s));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                lv_items.setAdapter(itemAdapter);
+            }
+        });
     }
 
     private void initContent() {
