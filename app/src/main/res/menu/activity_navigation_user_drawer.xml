@@ -4,18 +4,18 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_person_black"
-            android:title="Mi perfil" />
+        <!--<item-->
+            <!--android:id="@+id/nav_profile"-->
+            <!--android:icon="@drawable/ic_person_black"-->
+            <!--android:title=" " />-->
         <item
             android:id="@+id/nav_cart"
             android:icon="@drawable/ic_local_grocery_store_black_24dp"
             android:title="Mi carrito" />
-        <item
-            android:id="@+id/nav_options"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Opciones" />
+        <!--<item-->
+            <!--android:id="@+id/nav_options"-->
+            <!--android:icon="@drawable/ic_menu_manage"-->
+            <!--android:title=" " />-->
     </group>
 
     <item android:title="Cuenta">

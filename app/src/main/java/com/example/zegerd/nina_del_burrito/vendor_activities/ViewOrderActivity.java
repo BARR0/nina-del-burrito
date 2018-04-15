@@ -80,6 +80,6 @@ public class ViewOrderActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ViewOrderLocationActivity.class);
         intent.putExtra("lat", tmp.getLat());
         intent.putExtra("lng", tmp.getLng());
-
+        startActivity(intent);
     }
 }

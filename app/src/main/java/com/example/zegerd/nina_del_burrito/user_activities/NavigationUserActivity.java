@@ -184,12 +184,8 @@ public class NavigationUserActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_profile) {
-            Toast.makeText(this, "Mi perifl", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_cart) {
+        if (id == R.id.nav_cart) {
             viewCarrito();
-        } else if (id == R.id.nav_options) {
-            Toast.makeText(this, "Opciones", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_signout) {
             this.signOut();
         }
