@@ -26,7 +26,6 @@ public class AddFoodActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     private EditText name, desc, precio, category;
-    private Button addFood;
 
     private ListView listViewCategories;
     private List<String> categories;
@@ -82,25 +81,15 @@ public class AddFoodActivity extends AppCompatActivity {
         Toast.makeText(this, "Producto " + itemName + " añadido", Toast.LENGTH_SHORT).show();
     }
 
-
-    public void endAddFoof(View v) {
-        Intent result = new Intent();
-        setResult(RESULT_OK, result);
-        finish();
-    }
-
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
-
-        Intent result = new Intent();
-        setResult(RESULT_OK, result);
         finish();
     }
 
     public void addCategory(View v){
         String s = category.getText().toString();
-//        Toast.makeText(this, "Please: " + s, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Please: " + s, Toast.LENGTH_SHORT).show();
         if (s == null || s == "")
             return;
         if (categories.contains(s))

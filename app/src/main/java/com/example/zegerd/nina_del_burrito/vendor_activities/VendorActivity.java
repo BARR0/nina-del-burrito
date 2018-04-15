@@ -32,7 +32,7 @@ public class VendorActivity extends AppCompatActivity {
     }
 
     public void miMenu(View v) {
-        Intent intent = new Intent(this, LoadingVendorFoodActivity.class);
+        Intent intent = new Intent(this, VendorFoodActivity.class);
         startActivity(intent);
     }
 

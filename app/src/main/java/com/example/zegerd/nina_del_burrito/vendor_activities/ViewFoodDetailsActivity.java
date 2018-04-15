@@ -249,8 +249,6 @@ public class ViewFoodDetailsActivity extends AppCompatActivity {
     }
 
     private void goBack() {
-        Intent result = new Intent();
-        setResult(RESULT_OK, result);
         finish();
     }
 }
