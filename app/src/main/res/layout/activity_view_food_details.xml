@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imageViewFood"
-        android:layout_width="141dp"
-        android:layout_height="142dp"
+        android:layout_width="164dp"
+        android:layout_height="208dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         app:srcCompat="@android:drawable/sym_def_app_icon" />
@@ -18,11 +18,13 @@
     <TextView
         android:id="@+id/txtvw_detalDescription"
         android:layout_width="match_parent"
-        android:layout_height="73dp"
+        android:layout_height="234dp"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/imageViewFood"
-        android:layout_marginTop="181dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="255dp"
+        android:background="@drawable/redondo"
         android:text="Descripcion"
+        android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="18sp" />
 
@@ -32,18 +34,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/txtvw_detailName"
-        android:layout_marginTop="58dp"
+        android:layout_marginTop="108dp"
         android:text="Precio"
         android:textColor="@android:color/black"
         android:textSize="18sp" />
 
     <TextView
         android:id="@+id/txtvw_detailName"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/imageViewFood"
+        android:layout_alignParentTop="true"
         android:layout_marginEnd="121dp"
+        android:layout_marginTop="35dp"
         android:text="Nombre"
         android:textColor="@android:color/black"
         android:textSize="18sp" />
@@ -52,25 +55,33 @@
         android:id="@+id/checkBox_detailAvailable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageViewFood"
-        android:layout_alignStart="@+id/txtvw_detailName"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="178dp"
+        android:layout_toEndOf="@+id/imageViewFood"
         android:text="Disponible" />
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="wrap_content"
+        android:layout_width="134dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
+        android:layout_marginBottom="148dp"
+        android:layout_marginStart="109dp"
+        android:background="@drawable/buttonloginstyle"
         android:onClick="updateFood"
-        android:text="Actualizar" />
+        android:text="Actualizar"
+        android:textColor="#ffff" />
 
     <Button
         android:id="@+id/button8"
-        android:layout_width="111dp"
+        android:layout_width="132dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/button4"
+        android:layout_marginBottom="71dp"
+        android:background="@drawable/buttonloginstyle"
         android:onClick="deleteFood"
-        android:text="Eliminar" />
+        android:text="Eliminar"
+        android:textColor="#ffff" />
 </RelativeLayout>

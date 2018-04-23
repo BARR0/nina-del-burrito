@@ -73,8 +73,8 @@
         android:id="@+id/txtvw_orderClient"
         android:layout_width="199dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/txtvw_orderName"
-        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/txtvw_orderPlace"
+        android:layout_alignTop="@+id/textView4"
         android:text="Producto:"
         android:textSize="18sp" />
 
@@ -107,20 +107,25 @@
 
     <Button
         android:id="@+id/button7"
-        android:layout_width="wrap_content"
+        android:layout_width="271dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="98dp"
+        android:background="@drawable/buttonloginstyle"
         android:onClick="deleteOrder"
-        android:text="COmpletar Orden" />
+        android:text="COmpletar Orden"
+        android:textColor="#ffff" />
 
     <Button
         android:id="@+id/buttonLocation"
-        android:layout_width="wrap_content"
+        android:layout_width="139dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtvw_orderClient"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="231dp"
+        android:background="@drawable/buttonloginstyle"
         android:onClick="viewLocation"
-        android:text="Location" />
+        android:text="Location"
+        android:textColor="#ffff" />
 </RelativeLayout>

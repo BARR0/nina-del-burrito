@@ -13,6 +13,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:onClick="signOut"
+        android:background="@drawable/buttonloginstyle"
+        android:textColor="#ffff"
         android:text="Sign out" />
 
     <ListView
@@ -29,5 +31,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:onClick="viewCarrito"
+        android:background="@drawable/buttonloginstyle"
+        android:textColor="#ffff"
         android:text="Carrito" />
 </RelativeLayout>

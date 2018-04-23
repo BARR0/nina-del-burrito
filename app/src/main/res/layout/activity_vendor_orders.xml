@@ -22,6 +22,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="31dp"
         android:text="Mis pedidos"
+        android:textColor="#000"
         android:textSize="30sp" />
 
 </RelativeLayout>

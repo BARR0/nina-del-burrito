@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/buttonPay"
         android:layout_alignParentStart="true"
-        android:text="Total"
+        android:text="Total $"
+        android:textColor="#1bc900"
         android:textAlignment="center"
         android:textSize="24sp" />
 
@@ -23,6 +24,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:onClick="buy"
+        android:background="@drawable/buttonloginstyle"
+        android:textColor="#ffff"
         android:text="Pagar" />
 
     <EditText
@@ -37,12 +40,14 @@
 
     <Button
         android:id="@+id/buttonLocation"
-        android:layout_width="match_parent"
+        android:layout_width="197dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editTextDetails"
         android:layout_centerHorizontal="true"
+        android:background="@drawable/buttonloginstyle"
         android:onClick="getLocation"
-        android:text="Set Location" />
+        android:text="Set Location"
+        android:textColor="#ffff" />
 
     <TextView
         android:id="@+id/textViewDate"
@@ -54,10 +59,13 @@
 
     <Button
         android:id="@+id/buttonPickDate"
-        android:layout_width="match_parent"
+        android:layout_width="232dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textViewDate"
+        android:layout_marginStart="87dp"
+        android:background="@drawable/buttonloginstyle"
         android:onClick="setTime"
-        android:text="Change Time" />
+        android:text="Change Time"
+        android:textColor="#ffff" />
 </RelativeLayout>
