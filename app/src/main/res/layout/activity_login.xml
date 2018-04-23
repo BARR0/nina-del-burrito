@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
+    android:background="#ffff"
     tools:context="com.example.zegerd.nina_del_burrito.LoginActivity">
 
     <EditText
@@ -13,37 +14,44 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="319dp"
         android:ems="10"
         android:hint="@string/username"
+        android:backgroundTint="#ff3300"
+        android:textColorHint="#000"
         android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/txt_pass"
+        android:textColorHint="#000"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/txt_user"
-        android:layout_below="@+id/txt_user"
-        android:layout_marginTop="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="283dp"
         android:ems="10"
         android:hint="@string/password"
+        android:backgroundTint="#ff3300"
         android:inputType="textPassword" />
 
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/login" />
+        android:layout_marginBottom="191dp"
+        android:background="@drawable/buttonloginstyle"
+        android:text="Login"
+        android:textColor="#ffff" />
 
     <Button
         android:id="@+id/btn_forgot_password"
-        android:layout_width="match_parent"
+        android:layout_width="241dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/btn_login"
-        android:layout_below="@+id/btn_login"
-        android:layout_marginTop="18dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="39dp"
         android:background="@null"
         android:text="@string/forgot_your_password"
         android:textAllCaps="false"
@@ -51,15 +59,16 @@
 
     <Button
         android:id="@+id/btn_register"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_forgot_password"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp"
-        android:background="@null"
-        android:text="@string/register_now"
+        android:layout_marginBottom="122dp"
+        android:background="@drawable/registerxml"
+        android:text="REGISTER NOW"
         android:textAllCaps="false"
-        android:textSize="12sp" />
+        android:textColor="#ffff"
+        android:textSize="14sp" />
 
     <ProgressBar
         android:id="@+id/progressBar2"
@@ -70,4 +79,13 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:visibility="gone"   />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/logo" />
+
 </RelativeLayout>
