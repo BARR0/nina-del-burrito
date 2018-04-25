@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -24,13 +25,20 @@ import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.zegerd.nina_del_burrito.MainActivity;
 import com.example.zegerd.nina_del_burrito.R;
 import com.example.zegerd.nina_del_burrito.adapters.CategoryItemAdapter;
 import com.example.zegerd.nina_del_burrito.adapters.ItemAdapter;
 import com.example.zegerd.nina_del_burrito.classes.Item;
 import com.example.zegerd.nina_del_burrito.classes.User;
+import com.example.zegerd.nina_del_burrito.vendor_activities.VendorFoodActivity;
+import com.firebase.ui.database.FirebaseListAdapter;
+import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,12 +51,17 @@ public class NavigationUserActivity extends AppCompatActivity
 
     public final String[] CATEGORIES = {"todo", "desayuno", "comida", "postre", "cena"};
 
+    // FireBase Objects
     private FirebaseAuth mAuth;
+    private DatabaseReference mDataReference;
+    private FirebaseListAdapter<Item> firebaseMainAdapter;
+    private FirebaseListAdapter<Item> currentAdapter;
+
     private ListView lv_items;
     private ItemAdapter itemAdapter;
     private User currentUser;
     private Spinner spinnerCategory;
-    private Map<String, ListAdapter> adapters;
+    private Map<String, FirebaseListAdapter<Item>> FBadapters;
 
     public static ArrayList<Item> carrito;
 
@@ -57,9 +70,9 @@ public class NavigationUserActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_user);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
         //setSupportActionBar(toolbar); // Enables settings button
 
+        /* Navigation stuff */
         // Round button from the lower right corner
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -77,10 +90,103 @@ public class NavigationUserActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        /* End Navigation stuff */
 
+        // Our stuff
         initContent();
+        changeHeaderInfo(navigationView);
+        initDefaultAdaptersCategories();
 
-        // Change header info
+        // Spinner change adpater logic
+        spinnerCategory = (Spinner)findViewById(R.id.spinnerCategory);
+        List<String> cats = Arrays.asList(CATEGORIES);
+        final SpinnerAdapter adapter = new ArrayAdapter<String>(this, R.layout.catergory_row, R.id.textViewCategory, cats);
+        spinnerCategory.setAdapter(adapter);
+
+        spinnerCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                currentAdapter.stopListening();
+                String s = adapter.getItem(i).toString();
+                if (s.equals(CATEGORIES[0])) {
+                    currentAdapter = firebaseMainAdapter;
+                }
+                else {
+                    currentAdapter = FBadapters.get(s);
+                }
+                lv_items.setAdapter(currentAdapter);
+                currentAdapter.startListening();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                lv_items.setAdapter(currentAdapter);
+            }
+        });
+
+    }
+
+    private void initContent() {
+        // FireBase stuff
+        mAuth = FirebaseAuth.getInstance();
+        mDataReference = FirebaseDatabase.getInstance().getReference("ItemsAll");
+
+        // UI Stuff
+        lv_items = findViewById(R.id._dynamic_listView);
+
+        // Main adapter init
+        // - itemAdapter = MainActivity.allItemAdapter;
+        Query query = mDataReference.orderByChild("disponible").equalTo(true);
+        firebaseMainAdapter = initFirebaseAdapter(query);
+        lv_items.setAdapter(firebaseMainAdapter);
+        lv_items.setOnItemClickListener(this);
+        currentAdapter = firebaseMainAdapter;
+
+        // Other inits
+        carrito = new ArrayList<>();
+        currentUser = (User) getIntent().getSerializableExtra(MainActivity.USER_DATA);
+    }
+
+    private void initDefaultAdaptersCategories() {
+        FBadapters = new HashMap<String, FirebaseListAdapter<Item>>();
+        for (String s : CATEGORIES) {
+            Query tempQuery = mDataReference.orderByChild("categories/" + s).equalTo(true);
+            FirebaseListAdapter<Item> FBtempAdapter = initFirebaseAdapter(tempQuery);
+            FBadapters.put(s, FBtempAdapter);
+        }
+    }
+
+    private FirebaseListAdapter<Item> initFirebaseAdapter(Query query) {
+        // Init firebase default options
+        FirebaseListOptions<Item> options = new FirebaseListOptions.Builder<Item>()
+                .setLayout(R.layout.item_row)
+                .setQuery(query, Item.class)
+                .build();
+
+        // Init adpater
+        FirebaseListAdapter<Item> FBAdapter = new FirebaseListAdapter<Item>(options) {
+            @Override
+            protected void populateView(View v, Item model, int position) {
+                TextView itemName = v.findViewById(R.id.tv_name);
+                TextView itemDesc = v.findViewById(R.id.tv_description);
+                TextView itemPrice = v.findViewById(R.id.tv_price);
+                ImageView itemImg = v.findViewById(R.id.iv_picture);
+
+                itemName.setText(model.getNombre());
+                itemDesc.setText(model.getDescripcion());
+                itemPrice.setText("" + model.getPrecio());
+                if (model.getItemPicture() != null) {
+                    Glide.with(NavigationUserActivity.this)
+                            .load(model.getItemPicture())
+                            .into(itemImg);
+                }
+            }
+        };
+
+        return FBAdapter;
+    }
+
+    private void changeHeaderInfo(NavigationView navigationView) {
         View header = navigationView.getHeaderView(0);
         TextView name = header.findViewById(R.id.textView_header_name);
         TextView mail = header.findViewById(R.id.textView_header_mail);
@@ -88,43 +194,6 @@ public class NavigationUserActivity extends AppCompatActivity
         if (currentUser.getRolId() == 1) {
             name.setText("Vendedor");
         } else name.setText("Comprador");
-
-        adapters = new HashMap<String, ListAdapter>();
-        for (String s : CATEGORIES)
-            adapters.put(s, new CategoryItemAdapter(NavigationUserActivity.this, s));
-
-        spinnerCategory = (Spinner)findViewById(R.id.spinnerCategory);
-        List<String> cats = Arrays.asList(CATEGORIES);
-        final SpinnerAdapter adapter = new ArrayAdapter<String>(this, R.layout.catergory_row, R.id.textViewCategory, cats);
-        spinnerCategory.setAdapter(adapter);
-        spinnerCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String s = adapter.getItem(i).toString();
-                if (s.equals(CATEGORIES[0])){
-                    lv_items.setAdapter(itemAdapter);
-                    return;
-                }
-                lv_items.setAdapter(adapters.get(s));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                lv_items.setAdapter(itemAdapter);
-            }
-        });
-    }
-
-    private void initContent() {
-        mAuth = FirebaseAuth.getInstance();
-        lv_items = findViewById(R.id._dynamic_listView);
-        //itemAdapter = new AllItemAdapter(this);
-        itemAdapter = MainActivity.allItemAdapter;
-        lv_items.setAdapter(itemAdapter);
-        lv_items.setOnItemClickListener(this);
-
-        carrito = new ArrayList<>();
-        currentUser = (User) getIntent().getSerializableExtra(MainActivity.USER_DATA);
     }
 
     public void signOut(View v) {
@@ -132,6 +201,7 @@ public class NavigationUserActivity extends AppCompatActivity
     }
 
     private void signOut() {
+        currentAdapter.stopListening();
         mAuth.signOut();
         finish();
     }
@@ -197,7 +267,7 @@ public class NavigationUserActivity extends AppCompatActivity
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Item item = (Item)itemAdapter.getItem(i);
+        Item item = (Item) adapterView.getItemAtPosition(i);
         Toast.makeText(this, item.toString() + " en el carrito.", Toast.LENGTH_LONG).show();
         if (!carrito.contains(item))
             carrito.add(item);
@@ -210,5 +280,17 @@ public class NavigationUserActivity extends AppCompatActivity
         if(resultCode == PlaceOrderActivity.RESULT_BOUGHT){
             carrito = new ArrayList<>();
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        currentAdapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        currentAdapter.stopListening();
     }
 }

@@ -10,6 +10,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
+import java.util.Map;
 
 public class CategoryItemAdapter extends ItemAdapter {
     public CategoryItemAdapter(Activity activity, final String category) {
@@ -19,10 +20,10 @@ public class CategoryItemAdapter extends ItemAdapter {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot child: dataSnapshot.getChildren()) {
                     Item tmp = child.getValue(Item.class);
-                    List<String> cats = tmp.getCategories();
+                    Map<String, Boolean> cats = tmp.getCategories();
                     if (cats == null) continue;
-                    Log.d("CATS", cats.toString());
-                    if (tmp.isDisponible() && cats.contains(category))
+                    //Log.d("CATS", cats.toString());
+                    if (tmp.isDisponible() && cats.containsKey(category))
                         items.add(tmp);
                     Log.d("ITEM", child.toString());
                 }

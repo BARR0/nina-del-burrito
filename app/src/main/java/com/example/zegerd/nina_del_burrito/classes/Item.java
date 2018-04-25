@@ -1,7 +1,11 @@
 package com.example.zegerd.nina_del_burrito.classes;
 
+import android.text.BoringLayout;
+
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Zegerd on 2/20/2018.
@@ -13,22 +17,22 @@ public class Item implements Serializable{
     private float precio;
     private boolean disponible;
     private String vendorid;
-    private List<String> categories;
+    private Map<String, Boolean> categories;
     private String itemPicture;
 
     public Item() {
 
     }
 
-    public List<String> getCategories() {
+    public Map<String, Boolean> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<String> categories) {
+    public void setCategories(Map<String, Boolean> categories) {
         this.categories = categories;
     }
 
-    public Item (String nom, String desc, float pre, String vendorid, List<String> categories) {
+    public Item (String nom, String desc, float pre, String vendorid, Map<String, Boolean> categories) {
         this.nombre = nom;
         this.descripcion = desc;
         this.precio = pre;

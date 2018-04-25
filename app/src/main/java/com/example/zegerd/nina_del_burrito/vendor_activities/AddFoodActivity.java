@@ -18,7 +18,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AddFoodActivity extends AppCompatActivity {
 
@@ -65,7 +67,9 @@ public class AddFoodActivity extends AppCompatActivity {
         }
         float itemPrice = Float.parseFloat(itemPriceText);
 
-        Item food = new Item(itemName, itemDesc, itemPrice, mAuth.getCurrentUser().getUid(), categories);
+        Map<String, Boolean> cat = new HashMap<>();
+        for (String i : categories) cat.put(i, true);
+        Item food = new Item(itemName, itemDesc, itemPrice, mAuth.getCurrentUser().getUid(), cat);
 
         String userId = mAuth.getCurrentUser().getUid();
         DatabaseReference currentItemDB = FirebaseDatabase.getInstance()
