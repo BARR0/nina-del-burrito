@@ -71,6 +71,7 @@ public class ItemAdapter extends BaseAdapter {
         if (actual.getItemPicture() != null) {
             Glide.with(activity)
                     .load(actual.getItemPicture())
+                    .thumbnail(0.3f)
                     .into(itemImg);
         }
 

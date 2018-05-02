@@ -178,6 +178,7 @@ public class NavigationUserActivity extends AppCompatActivity
                 if (model.getItemPicture() != null) {
                     Glide.with(NavigationUserActivity.this)
                             .load(model.getItemPicture())
+                            .thumbnail(0.3f)
                             .into(itemImg);
                 }
             }

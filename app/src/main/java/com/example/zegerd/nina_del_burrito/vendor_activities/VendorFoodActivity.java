@@ -68,6 +68,7 @@ public class VendorFoodActivity extends AppCompatActivity implements AdapterView
                 if (model.getItemPicture() != null) {
                     Glide.with(VendorFoodActivity.this)
                             .load(model.getItemPicture())
+                            .thumbnail(0.3f)
                             .into(itemImg);
                 }
             }
