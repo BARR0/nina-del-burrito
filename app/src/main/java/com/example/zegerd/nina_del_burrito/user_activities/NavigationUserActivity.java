@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -57,6 +58,7 @@ public class NavigationUserActivity extends AppCompatActivity
     private FirebaseListAdapter<Item> firebaseMainAdapter;
     private FirebaseListAdapter<Item> currentAdapter;
 
+    private EditText searchText;
     private ListView lv_items;
     private ItemAdapter itemAdapter;
     private User currentUser;
@@ -133,6 +135,7 @@ public class NavigationUserActivity extends AppCompatActivity
 
         // UI Stuff
         lv_items = findViewById(R.id._dynamic_listView);
+        searchText = findViewById(R.id.editText_category);
 
         // Main adapter init
         // - itemAdapter = MainActivity.allItemAdapter;
@@ -197,6 +200,7 @@ public class NavigationUserActivity extends AppCompatActivity
         } else name.setText("Comprador");
     }
 
+    /* Button methods */
     public void signOut(View v) {
         this.signOut();
     }
@@ -217,6 +221,18 @@ public class NavigationUserActivity extends AppCompatActivity
         startActivityForResult(intent,0);
     }
 
+    public void customFilter(View v) {
+        currentAdapter.stopListening();
+
+        String s = searchText.getText().toString();
+        Query tempQuery = mDataReference.orderByChild("categories/" + s).equalTo(true);
+        currentAdapter = initFirebaseAdapter(tempQuery);
+
+        lv_items.setAdapter(currentAdapter);
+        currentAdapter.startListening();
+    }
+
+    /* Override methods */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
+    android:padding="10dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".user_activities.NavigationUserActivity"
     tools:showIn="@layout/app_bar_navigation_user">
@@ -12,15 +12,34 @@
     <ListView
         android:id="@+id/_dynamic_listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="411dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="54dp" />
+        android:layout_marginTop="100dp" />
 
     <Spinner
         android:id="@+id/spinnerCategory"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
+        android:layout_below="@+id/btn_filter" />
+
+    <Button
+        android:id="@+id/btn_filter"
+        android:layout_width="101dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:onClick="customFilter"
+        android:text="filter" />
+
+    <EditText
+        android:id="@+id/editText_category"
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:text="Category" />
 </RelativeLayout>
