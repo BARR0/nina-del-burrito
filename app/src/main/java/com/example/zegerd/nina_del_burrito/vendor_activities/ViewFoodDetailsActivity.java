@@ -37,7 +37,9 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ViewFoodDetailsActivity extends AppCompatActivity {
 
@@ -199,17 +201,12 @@ public class ViewFoodDetailsActivity extends AppCompatActivity {
 
     public void updateFood(View v) {
         // update the register in db
-        /*
-        String nameItem = currentItem.getNombre();
-        String descItem = currentItem.getDescripcion();
-        float priceItem = currentItem.getPrecio();
-        String vendorItem = currentItem.getVendorid();
-        List<String> categItem = currentItem.getCategories();
-        */
-        //Item newItem = new Item(nameItem, descItem, priceItem, vendorItem, categItem);
 
         boolean availableItem = availabelBox.isChecked();
         currentItem.setDisponible(availableItem);
+
+        // Update categories
+        updateCurrentItemCats();
 
         if (imageHoldUri != null) {
 
@@ -241,6 +238,14 @@ public class ViewFoodDetailsActivity extends AppCompatActivity {
         //this.goBack();
     }
 
+    private void updateCurrentItemCats() {
+        Map<String, Boolean> temp = new HashMap<>();
+        for (String key : currentItem.getCategories().keySet()) {
+            temp.put(key, currentItem.isDisponible());
+        }
+        currentItem.setCategories(temp);
+
+    }
 
     @Override
     public void onBackPressed() {
