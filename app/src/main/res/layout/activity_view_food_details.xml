@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/txtvw_detailName"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="119dp"
         android:text="Precio"
         android:textColor="@android:color/black"
         android:textSize="18sp" />
@@ -45,20 +45,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="121dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginTop="69dp"
         android:text="Nombre"
         android:textColor="@android:color/black"
         android:textSize="18sp" />
-
-    <CheckBox
-        android:id="@+id/checkBox_detailAvailable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="178dp"
-        android:layout_toEndOf="@+id/imageViewFood"
-        android:text="Disponible" />
 
     <Button
         android:id="@+id/button4"
@@ -84,4 +75,14 @@
         android:onClick="deleteFood"
         android:text="Eliminar"
         android:textColor="#ffff" />
+
+    <EditText
+        android:id="@+id/editText_viewCantidad"
+        android:layout_width="156dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageViewFood"
+        android:layout_alignParentEnd="true"
+        android:ems="10"
+        android:hint="Cantidad"
+        android:inputType="number" />
 </RelativeLayout>

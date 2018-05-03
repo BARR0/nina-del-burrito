@@ -27,7 +27,7 @@ public class AddFoodActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
-    private EditText name, desc, precio, category;
+    private EditText name, desc, precio, category, cantidad;
 
     private ListView listViewCategories;
     private List<String> categories;
@@ -45,6 +45,7 @@ public class AddFoodActivity extends AppCompatActivity {
         desc = findViewById(R.id.editTxt_foodDesc);
         precio = findViewById(R.id.editTxt_foodPrecio);
         category = findViewById(R.id.editTextCategory);
+        cantidad = findViewById(R.id.editText_cantidad);
 
         listViewCategories = (ListView)findViewById(R.id.listViewCategory);
         categories = new ArrayList<>();
@@ -61,15 +62,23 @@ public class AddFoodActivity extends AppCompatActivity {
         String itemName = name.getText().toString();
         String itemDesc = desc.getText().toString();
         String itemPriceText = precio.getText().toString();
-        if(itemPriceText.matches("") || itemName.matches("") || itemPriceText.matches("")){
+        String itemQuantityText = cantidad.getText().toString();
+
+        if(itemPriceText.matches("") || itemName.matches("") || itemPriceText.matches("") || itemQuantityText.matches("")){
             Toast.makeText(this, "Hay campos vacíos", Toast.LENGTH_SHORT).show();
             return;
         }
         float itemPrice = Float.parseFloat(itemPriceText);
+        int itemQuantity = Integer.parseInt(itemQuantityText);
+
+        if (itemQuantity < 0) {
+            Toast.makeText(this, "Cantidad no puede ser negativa", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         Map<String, Boolean> cat = new HashMap<>();
         for (String i : categories) cat.put(i, true);
-        Item food = new Item(itemName, itemDesc, itemPrice, mAuth.getCurrentUser().getUid(), cat);
+        Item food = new Item(itemName, itemDesc, itemPrice, mAuth.getCurrentUser().getUid(), cat, itemQuantity);
 
         String userId = mAuth.getCurrentUser().getUid();
         DatabaseReference currentItemDB = FirebaseDatabase.getInstance()
@@ -80,6 +89,7 @@ public class AddFoodActivity extends AppCompatActivity {
         name.setText("");
         desc.setText("");
         precio.setText("");
+        cantidad.setText("");
         categories = new ArrayList<>();
         listViewCategories.setAdapter(new ArrayAdapter<String>(this, R.layout.category_layout, R.id.textViewCategoryRow, categories));
         Toast.makeText(this, "Producto " + itemName + " añadido", Toast.LENGTH_SHORT).show();

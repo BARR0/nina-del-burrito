@@ -15,6 +15,7 @@ public class Item implements Serializable{
     private String nombre;
     private String descripcion;
     private float precio;
+    private int cantidad;
     private boolean disponible;
     private String vendorid;
     private Map<String, Boolean> categories;
@@ -32,11 +33,12 @@ public class Item implements Serializable{
         this.categories = categories;
     }
 
-    public Item (String nom, String desc, float pre, String vendorid, Map<String, Boolean> categories) {
+    public Item (String nom, String desc, float pre, String vendorid, Map<String, Boolean> categories, int cantidad) {
         this.nombre = nom;
         this.descripcion = desc;
         this.precio = pre;
-        this.disponible = true;
+        this.cantidad = cantidad;
+        this.disponible = cantidad > 0;
         this.vendorid = vendorid;
         this.categories = categories;
         this.itemPicture = null;
@@ -68,11 +70,19 @@ public class Item implements Serializable{
     }
 
     public boolean isDisponible() {
-        return disponible;
+        return cantidad > 0;
     }
 
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     public String toString() {

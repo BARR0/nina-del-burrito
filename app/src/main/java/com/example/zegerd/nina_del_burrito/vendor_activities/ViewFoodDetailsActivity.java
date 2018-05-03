@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,7 +50,8 @@ public class ViewFoodDetailsActivity extends AppCompatActivity {
 
     // UI elements
     private TextView name, price, description;
-    private CheckBox availabelBox;
+    private EditText quantity;
+    //private CheckBox availabelBox;
     private ImageView foodImage;
 
     // FireBase vars
@@ -72,7 +74,8 @@ public class ViewFoodDetailsActivity extends AppCompatActivity {
         name = findViewById(R.id.txtvw_detailName);
         price = findViewById(R.id.txtvw_detailPrice);
         description = findViewById(R.id.txtvw_detalDescription);
-        availabelBox = findViewById(R.id.checkBox_detailAvailable);
+        //availabelBox = findViewById(R.id.checkBox_detailAvailable);
+        quantity = findViewById(R.id.editText_viewCantidad);
         foodImage = findViewById(R.id.imageViewFood);
 
         // Get selected item
@@ -96,7 +99,8 @@ public class ViewFoodDetailsActivity extends AppCompatActivity {
         name.setText(currentItem.getNombre());
         price.setText("" + currentItem.getPrecio());
         description.setText(currentItem.getDescripcion());
-        availabelBox.setChecked(currentItem.isDisponible());
+        //availabelBox.setChecked(currentItem.isDisponible());
+        quantity.setText("" + currentItem.getCantidad());
 
         if (currentItem.getItemPicture() != null) {
             // There is an url picture
@@ -201,9 +205,22 @@ public class ViewFoodDetailsActivity extends AppCompatActivity {
 
     public void updateFood(View v) {
         // update the register in db
+        String text_currentItemQuantity = quantity.getText().toString();
 
-        boolean availableItem = availabelBox.isChecked();
-        currentItem.setDisponible(availableItem);
+        if (text_currentItemQuantity.matches("")) {
+            Toast.makeText(this, "Debe haber un numero en cantidad", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        int currentItemQuantity = (int) Float.parseFloat(text_currentItemQuantity);
+
+        if (currentItemQuantity < 0) {
+            Toast.makeText(this, "Cantidad no puede ser negativa", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        currentItem.setCantidad(currentItemQuantity);
+        currentItem.setDisponible(currentItemQuantity > 0); // this should be on the class 'cantidad' setter method right?
 
         // Update categories
         updateCurrentItemCats();
