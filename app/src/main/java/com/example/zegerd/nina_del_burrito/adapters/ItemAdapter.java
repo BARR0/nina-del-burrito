@@ -21,7 +21,7 @@ import java.util.ArrayList;
  */
 
 public class ItemAdapter extends BaseAdapter {
-    private Activity activity;
+    protected Activity activity;
     protected ArrayList<Item> items;
 
     public ItemAdapter(Activity activity) {

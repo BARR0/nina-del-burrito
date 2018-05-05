@@ -116,10 +116,10 @@ public class PlaceOrderActivity extends AppCompatActivity {
         }
         response = RESULT_BOUGHT;
         setResult(response);
-        // TODO change this with the quantity chosen by the user
-        int quantity = 1;
-        for (Item item: NavigationUserActivity.carrito) {
-            setOrders(item, quantity);
+//         TODO change this with the quantity chosen by the user
+//        int quantity = 1;
+        for (int i = 0; i < NavigationUserActivity.carrito.size(); ++i) {
+            setOrders(NavigationUserActivity.carrito.get(i), CarritoActivity.quantities[i]);
         }
         Toast.makeText(this, "Orden Enviada", Toast.LENGTH_SHORT).show();
         finish();

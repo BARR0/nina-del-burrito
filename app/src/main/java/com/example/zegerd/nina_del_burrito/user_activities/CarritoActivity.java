@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.zegerd.nina_del_burrito.MainActivity;
 import com.example.zegerd.nina_del_burrito.R;
+import com.example.zegerd.nina_del_burrito.adapters.CarritoAdapter;
 import com.example.zegerd.nina_del_burrito.adapters.ItemAdapter;
 import com.example.zegerd.nina_del_burrito.classes.Item;
 import com.example.zegerd.nina_del_burrito.classes.Order;
@@ -21,12 +22,15 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CarritoActivity extends AppCompatActivity {
     private ListView lv_carrito;
     private Button b_pay;
     private FirebaseAuth mAuth;
     private User currentUser;
+    public static int[] quantities;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +42,14 @@ public class CarritoActivity extends AppCompatActivity {
 
         currentUser = (User) getIntent().getSerializableExtra(MainActivity.USER_DATA);
 
+        quantities = new int[NavigationUserActivity.carrito.size()];
+        for(int i = 0; i < quantities.length; ++i) {
+            quantities[i] = 1;
+        }
+
         lv_carrito = (ListView)findViewById(R.id.lv_carrito);
         b_pay = (Button)findViewById(R.id.b_pay);
-        lv_carrito.setAdapter(new ItemAdapter(this, NavigationUserActivity.carrito));
+        lv_carrito.setAdapter(new CarritoAdapter(this, NavigationUserActivity.carrito));
     }
 
     public void buy(View v){
