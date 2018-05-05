@@ -4,8 +4,10 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telecom.Call;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.zegerd.nina_del_burrito.MainActivity;
 import com.example.zegerd.nina_del_burrito.R;
+import com.example.zegerd.nina_del_burrito.classes.CallAPI;
 import com.example.zegerd.nina_del_burrito.classes.Item;
 import com.example.zegerd.nina_del_burrito.classes.Order;
 import com.example.zegerd.nina_del_burrito.classes.User;
@@ -30,6 +33,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
 
 import org.w3c.dom.Text;
 
@@ -147,6 +152,21 @@ public class PlaceOrderActivity extends AppCompatActivity {
                 location);
 
         currentItemDB.child(key).setValue(order);
+
+//        // See documentation on defining a message payload.
+//        new RemoteMessage.Builder("428694822954@gcm.googleapis.com").;
+//        Message message = Message.builder()
+//                .putData("score", "850")
+//                .putData("time", "2:45")
+//                .setTopic(item.getVendorid())
+//                .build();
+//
+//        // Send a message to the devices subscribed to the provided topic.
+//        String response = FirebaseMessaging.getInstance().sendAsync(message).get();
+//        // Response is a message ID string.
+//        System.out.println("Successfully sent message: " + response);
+
+
     }
 
     @Override
@@ -168,6 +188,9 @@ public class PlaceOrderActivity extends AppCompatActivity {
 //        if (!Double.isNaN(lat) && !Double.isNaN(lng)){
 //            location = new LatLng(lat, lng);
 //        }
+
+        CallAPI api = new CallAPI();
+        api.execute("https://fcm.googleapis.com/v1/projects/ninadelburrito/messages:send", "");
     }
 
     public static class TimePickerFragment extends DialogFragment
