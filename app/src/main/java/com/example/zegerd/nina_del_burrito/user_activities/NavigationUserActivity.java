@@ -184,10 +184,13 @@ public class NavigationUserActivity extends AppCompatActivity
                 itemDesc.setText(model.getDescripcion());
                 itemPrice.setText("" + model.getPrecio());
                 rating.setText((int)(model.getRating() * 100) + "%");
+
+                final Button myB = b;
                 b.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         show(model);
+                        myB.setEnabled(false);
                     }
                 });
                 if (model.getItemPicture() != null) {
