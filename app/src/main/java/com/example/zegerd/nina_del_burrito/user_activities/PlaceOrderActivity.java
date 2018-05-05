@@ -149,7 +149,8 @@ public class PlaceOrderActivity extends AppCompatActivity {
                 key,
                 currentUser.getUsername(),
                 clientId,
-                location);
+                location,
+                vendorId);
 
         currentItemDB.child(key).setValue(order);
 

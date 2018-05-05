@@ -10,11 +10,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zegerd.nina_del_burrito.R;
+import com.example.zegerd.nina_del_burrito.classes.Item;
 import com.example.zegerd.nina_del_burrito.classes.Order;
 import com.example.zegerd.nina_del_burrito.loading_activities.LoadingVendorOrderActivity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.GregorianCalendar;
 
@@ -25,6 +29,7 @@ public class ViewOrderActivity extends AppCompatActivity {
     private String orderClientId;
     private FirebaseAuth mAuth;
     private Order tmp;
+    private DatabaseReference itemRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +66,9 @@ public class ViewOrderActivity extends AppCompatActivity {
     }
 
     public void deleteOrder(View v) {
+        // Update item quantity
+        updateItem();
+
         // Delete from data base this order
         DatabaseReference currentOrder = FirebaseDatabase.getInstance()
                 .getReference()
@@ -81,5 +89,32 @@ public class ViewOrderActivity extends AppCompatActivity {
         intent.putExtra("lat", tmp.getLat());
         intent.putExtra("lng", tmp.getLng());
         startActivity(intent);
+    }
+
+    private void updateItem() {
+        itemRef = FirebaseDatabase.getInstance()
+                .getReference()
+                .child("ItemsAll")
+                .child(mAuth.getCurrentUser().getUid() + tmp.getItemName());
+
+        FirebaseDatabase.getInstance().getReference().child("ItemsAll").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot child: dataSnapshot.getChildren()) {
+                    Item tmpFirebase = child.getValue(Item.class);
+                    if (tmpFirebase.getNombre().equals(tmp.getItemName())) {
+                        // Update its quantity
+                        tmpFirebase.setCantidad( tmpFirebase.getCantidad() - tmp.getQuantity() );
+                        itemRef.setValue(tmpFirebase);
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }

@@ -15,13 +15,14 @@ public class Order implements Serializable{
     private String clientName;
     private String key;
     private String clientId;
+    private String vendorId;
     private double lat, lng;
     private int hour, minute;
 
     public Order () {
     }
 
-    public Order (int q, String desc, GregorianCalendar date, String id, String name, String k, String clientName, String cId, LatLng location) {
+    public Order (int q, String desc, GregorianCalendar date, String id, String name, String k, String clientName, String cId, LatLng location, String vId) {
         this.quantity = q;
         this.description = desc;
 //        this.orderDate = date;
@@ -34,6 +35,15 @@ public class Order implements Serializable{
         this.clientId = cId;
         this.lat = location.latitude;
         this.lng = location.longitude;
+        this.vendorId = vId;
+    }
+
+    public String getVendorId() {
+        return vendorId;
+    }
+
+    public void setVendorId(String vendorId) {
+        this.vendorId = vendorId;
     }
 
     public int getHour() {

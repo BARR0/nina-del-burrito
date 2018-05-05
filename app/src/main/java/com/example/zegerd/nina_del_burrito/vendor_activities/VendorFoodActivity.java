@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -61,6 +62,9 @@ public class VendorFoodActivity extends AppCompatActivity implements AdapterView
                 TextView itemDesc = v.findViewById(R.id.tv_description);
                 TextView itemPrice = v.findViewById(R.id.tv_price);
                 ImageView itemImg = v.findViewById(R.id.iv_picture);
+                Button b = (Button) v.findViewById(R.id.buttonRate);
+
+                b.setVisibility(View.GONE);
 
                 itemName.setText(model.getNombre());
                 itemDesc.setText(model.getDescripcion());
