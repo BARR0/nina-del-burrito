@@ -339,7 +339,7 @@ public class NavigationUserActivity extends AppCompatActivity
         {
             @Override
             public void onClick(View v) {
-                updateRating(item, np.getValue());
+                updateRating(item, np.getValue() / 100.0);
                 d.dismiss();
             }
         });
@@ -349,5 +349,12 @@ public class NavigationUserActivity extends AppCompatActivity
     private void updateRating(Item item, double rating){
         item.setRateQuantity(item.getRateQuantity() + 1);
         item.setRating(item.getRating() + (rating - item.getRating()) / (double)item.getRateQuantity());
+
+        String userId = item.getVendorid();
+        DatabaseReference currentItemDB = FirebaseDatabase.getInstance()
+                .getReference()
+                .child("ItemsAll")
+                .child(userId + item.getNombre());
+        currentItemDB.setValue(item);
     }
 }
