@@ -14,6 +14,8 @@ import com.example.zegerd.nina_del_burrito.user_activities.NavigationUserActivit
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 /**
@@ -62,11 +64,13 @@ public class ItemAdapter extends BaseAdapter {
         TextView description = (TextView) view.findViewById(R.id.tv_description);
         TextView price = (TextView) view.findViewById(R.id.tv_price);
         ImageView itemImg = view.findViewById(R.id.iv_picture);
+        TextView rating = (TextView) view.findViewById(R.id.textViewRating);
 
         Item actual = items.get(i);
         name.setText(actual.getNombre());
         description.setText(actual.getDescripcion());
         price.setText("$" + actual.getPrecio());
+        rating.setText((int)(actual.getRating() * 100) + "%");
 
         if (actual.getItemPicture() != null) {
             Glide.with(activity)

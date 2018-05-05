@@ -20,6 +20,8 @@ public class Item implements Serializable{
     private String vendorid;
     private Map<String, Boolean> categories;
     private String itemPicture;
+    private double rating;
+    private int rateQuantity;
 
     public Item() {
 
@@ -33,7 +35,7 @@ public class Item implements Serializable{
         this.categories = categories;
     }
 
-    public Item (String nom, String desc, float pre, String vendorid, Map<String, Boolean> categories, int cantidad) {
+    public Item (String nom, String desc, float pre, String vendorid, Map<String, Boolean> categories, int cantidad, double rating, int rateQuantity) {
         this.nombre = nom;
         this.descripcion = desc;
         this.precio = pre;
@@ -42,6 +44,8 @@ public class Item implements Serializable{
         this.vendorid = vendorid;
         this.categories = categories;
         this.itemPicture = null;
+        this.rating = rating;
+        this.rateQuantity = rateQuantity;
     }
 
 
@@ -103,5 +107,21 @@ public class Item implements Serializable{
 
     public void setItemPicture(String itemPicture) {
         this.itemPicture = itemPicture;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public int getRateQuantity() {
+        return rateQuantity;
+    }
+
+    public void setRateQuantity(int rateQuantity) {
+        this.rateQuantity = rateQuantity;
     }
 }

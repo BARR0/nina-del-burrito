@@ -9,12 +9,14 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="51dp"
-        android:text="Vendedor" />
+        android:layout_marginTop="66dp"
+        android:text="Tu calificación:"
+        android:textAlignment="center"
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/button3"
@@ -51,4 +53,13 @@
         android:onClick="misPedidos"
         android:text="Mis pedidos"
         android:textColor="#ffff" />
+
+    <TextView
+        android:id="@+id/textViewRating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textSize="30sp" />
 </RelativeLayout>

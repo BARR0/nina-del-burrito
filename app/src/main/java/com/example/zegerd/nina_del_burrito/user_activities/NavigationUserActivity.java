@@ -1,5 +1,6 @@
 package com.example.zegerd.nina_del_burrito.user_activities;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -19,8 +20,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
@@ -169,15 +172,24 @@ public class NavigationUserActivity extends AppCompatActivity
         // Init adpater
         FirebaseListAdapter<Item> FBAdapter = new FirebaseListAdapter<Item>(options) {
             @Override
-            protected void populateView(View v, Item model, int position) {
+            protected void populateView(View v, final Item model, int position) {
                 TextView itemName = v.findViewById(R.id.tv_name);
                 TextView itemDesc = v.findViewById(R.id.tv_description);
                 TextView itemPrice = v.findViewById(R.id.tv_price);
                 ImageView itemImg = v.findViewById(R.id.iv_picture);
+                TextView rating = (TextView) v.findViewById(R.id.textViewRating);
+                Button b = (Button) v.findViewById(R.id.buttonRate);
 
                 itemName.setText(model.getNombre());
                 itemDesc.setText(model.getDescripcion());
                 itemPrice.setText("" + model.getPrecio());
+                rating.setText((int)(model.getRating() * 100) + "%");
+                b.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        show(model);
+                    }
+                });
                 if (model.getItemPicture() != null) {
                     Glide.with(NavigationUserActivity.this)
                             .load(model.getItemPicture())
@@ -309,5 +321,33 @@ public class NavigationUserActivity extends AppCompatActivity
     protected void onStop() {
         super.onStop();
         currentAdapter.stopListening();
+    }
+
+    public void show(final Item item)
+    {
+
+        final Dialog d = new Dialog(this);
+        d.setTitle("Rating");
+        d.setContentView(R.layout.rating_dialog);
+        Button b1 = (Button) d.findViewById(R.id.buttonRate);
+        final NumberPicker np = (NumberPicker) d.findViewById(R.id.numberPicker);
+        np.setMaxValue(100);
+        np.setMinValue(0);
+        np.setWrapSelectorWheel(true);
+        np.setValue(50);
+        b1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                updateRating(item, np.getValue());
+                d.dismiss();
+            }
+        });
+        d.show();
+    }
+
+    private void updateRating(Item item, double rating){
+        item.setRateQuantity(item.getRateQuantity() + 1);
+        item.setRating(item.getRating() + (rating - item.getRating()) / (double)item.getRateQuantity());
     }
 }

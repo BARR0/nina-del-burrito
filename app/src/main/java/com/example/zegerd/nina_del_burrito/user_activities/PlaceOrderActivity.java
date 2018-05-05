@@ -79,8 +79,8 @@ public class PlaceOrderActivity extends AppCompatActivity {
         editTextDetails = (EditText)findViewById(R.id.editTextDetails);
 
         float total = 0f;
-        for (Item item: NavigationUserActivity.carrito) {
-            total += item.getPrecio();
+        for (int i = 0; i < NavigationUserActivity.carrito.size(); ++i) {
+            total += NavigationUserActivity.carrito.get(i).getPrecio() * CarritoActivity.quantities[i];
         }
 
         textViewTotal.setText("Total: $" + total);

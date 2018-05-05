@@ -78,7 +78,7 @@ public class AddFoodActivity extends AppCompatActivity {
 
         Map<String, Boolean> cat = new HashMap<>();
         for (String i : categories) cat.put(i, true);
-        Item food = new Item(itemName, itemDesc, itemPrice, mAuth.getCurrentUser().getUid(), cat, itemQuantity);
+        Item food = new Item(itemName, itemDesc, itemPrice, mAuth.getCurrentUser().getUid(), cat, itemQuantity, 1.0, 1);
 
         String userId = mAuth.getCurrentUser().getUid();
         DatabaseReference currentItemDB = FirebaseDatabase.getInstance()
